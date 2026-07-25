@@ -8,6 +8,7 @@
     "build": "vinext build && node scripts/prepare-hosting.mjs",
     "clean": "node scripts/clean.mjs",
     "start": "vinext start",
+    "export:static": "node scripts/export-static.mjs",
     "test": "node --experimental-strip-types --test tests/*.test.*",
     "report": "node scripts/guardian-report.mjs",
     "check": "npm run clean && npm test && tsc --noEmit && vinext check && npm run build"

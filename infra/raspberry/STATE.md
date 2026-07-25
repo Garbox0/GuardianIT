@@ -8,8 +8,19 @@
 - Imagen ARM64:
   `ghcr.io/twin/gatus@sha256:c5f210d095fa78e6efaa20ffeb14803f2ba4f10615e16a6d12087697149617f0`.
 - Persistencia: volumen Docker `guardian-pyme_gatus-data`.
-- Chequeos activos: conectividad HTTPS, motor local y sitio comercial privado.
+- Chequeos activos: conectividad HTTPS, motor local y sitio comercial público.
 - Exposición: solamente `100.80.237.96:8080`; no escucha en la IP LAN.
+
+## Sitio comercial
+
+- URL pública: `https://aerosftp.com`.
+- Alias: `https://www.aerosftp.com`.
+- Origen: archivos estáticos en `127.0.0.1:8090`.
+- Publicación: Cloudflare Tunnel `d71815a9-7a06-42a2-a9ff-9232d516ddb1`.
+- Servicios de arranque: `guardian-site.service` y `cloudflared.service`.
+- Puertos abiertos en el router: ninguno.
+- WAF: bloqueo de scanners comunes y de métodos distintos de
+  `GET`, `HEAD` y `OPTIONS`.
 
 OpenHealth fue retirado. No quedan contenedores `current-*` activos y se
 conservaron los volúmenes `current_postgres_data` y `current_keycloak_data`.

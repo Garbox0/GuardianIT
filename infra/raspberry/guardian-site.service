@@ -1,0 +1,23 @@
+[Unit]
+Description=Guardian PyME public site
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/guardian-site
+Environment=HOST=127.0.0.1
+Environment=PORT=8090
+Environment=SITE_ROOT=/home/pi/guardian-site/public
+ExecStart=/usr/bin/node /home/pi/guardian-site/server.mjs
+Restart=on-failure
+RestartSec=3s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=read-only
+ProtectSystem=strict
+
+[Install]
+WantedBy=multi-user.target

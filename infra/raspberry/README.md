@@ -73,3 +73,18 @@ OpenHealth se retiró sin borrar sus volúmenes. El respaldo final está en:
 El disco USB documentado como `/mnt/hdd` no estaba conectado durante el retiro.
 Ese directorio pertenece actualmente a la microSD y no debe tratarse como copia
 externa.
+
+## Sitio público
+
+La landing se sirve como archivos estáticos en `127.0.0.1:8090` y Cloudflare
+Tunnel publica `aerosftp.com` y `www.aerosftp.com`. No se abre ningún puerto en
+el router.
+
+```bash
+systemctl status guardian-site cloudflared
+curl -I http://127.0.0.1:8090/
+cloudflared tunnel ingress validate
+```
+
+El servicio web usa `/home/pi/guardian-site/public` y
+`/home/pi/guardian-site/server.mjs`.

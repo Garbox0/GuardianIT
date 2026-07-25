@@ -2,6 +2,7 @@ node_modules
 .next
 out
 dist
+.deploy
 .vite
 .vinext
 .env

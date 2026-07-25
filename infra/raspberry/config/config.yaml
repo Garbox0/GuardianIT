@@ -38,11 +38,11 @@ endpoints:
       hide-hostname: true
       hide-port: true
 
-  - name: "Sitio comercial privado"
+  - name: "Sitio comercial público"
     group: "Guardián PyME"
-    url: "https://guardian-pyme-operaciones.gbrlescalada.chatgpt.site"
+    url: "https://aerosftp.com"
     interval: 2m
     conditions:
-      - "[STATUS] == 401"
+      - "[STATUS] == 200"
       - "[RESPONSE_TIME] < 5000"
       - "[CERTIFICATE_EXPIRATION] > 168h"

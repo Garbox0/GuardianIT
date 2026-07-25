@@ -1,0 +1,12 @@
+tunnel: d71815a9-7a06-42a2-a9ff-9232d516ddb1
+credentials-file: /etc/cloudflared/d71815a9-7a06-42a2-a9ff-9232d516ddb1.json
+ingress:
+  - hostname: aerosftp.com
+    service: http://127.0.0.1:8090
+  - hostname: www.aerosftp.com
+    service: http://127.0.0.1:8090
+  - hostname: pjn.judic-ia.com
+    service: http://localhost:3100
+  - hostname: agente.judic-ia.com
+    service: http://localhost:3002
+  - service: http_status:404

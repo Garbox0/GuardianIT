@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && node scripts/prepare-dist.mjs",
-    "start": "next start",
+    "dev": "vinext dev",
+    "build": "vinext build && node scripts/prepare-hosting.mjs",
+    "clean": "node scripts/clean.mjs",
+    "start": "vinext start",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "check": "npm test && tsc --noEmit && npm run build"
+    "check": "npm run clean && npm test && tsc --noEmit && vinext check && npm run build"
   },
   "dependencies": {
     "next": "16.2.12",
@@ -19,7 +20,12 @@
     "@types/node": "22.18.1",
     "@types/react": "19.1.12",
     "@types/react-dom": "19.1.9",
-    "typescript": "5.9.2"
+    "@vitejs/plugin-react": "6.0.4",
+    "@vitejs/plugin-rsc": "0.5.30",
+    "react-server-dom-webpack": "19.2.8",
+    "typescript": "5.9.2",
+    "vinext": "1.0.0-beta.4",
+    "vite": "8.1.5"
   },
   "overrides": {
     "postcss": "8.5.23",

@@ -2,6 +2,7 @@ node_modules
 .next
 out
 dist
+.vite
 .env
 .env.local
 npm-debug.log*

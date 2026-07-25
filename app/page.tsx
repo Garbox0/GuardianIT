@@ -143,6 +143,7 @@ export default function Home() {
     name: site.name,
     description: site.description,
     areaServed: site.area,
+    telephone: site.whatsappDisplay,
     priceRange: "$$",
     serviceType: [
       "Soporte informático",
@@ -383,6 +384,8 @@ export default function Home() {
               <strong>{site.area}</strong>
               <span>Disponibilidad</span>
               <strong>{site.availability}</strong>
+              <span>WhatsApp</span>
+              <strong>{site.whatsappDisplay}</strong>
             </div>
           </div>
           <LeadForm whatsappNumber={site.whatsappNumber} />

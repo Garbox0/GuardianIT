@@ -35,9 +35,9 @@ const services = [
     features: [
       "Visita o sesión de hasta 2 horas",
       "Revisión de red, equipos y backups",
-      "Inventario básico",
+      "Diagnóstico automatizado de equipos Windows",
       "5 prioridades explicadas sin tecnicismos",
-      "Informe entregable"
+      "Informe HTML y evidencia técnica"
     ],
     cta: "Pedir diagnóstico"
   },
@@ -65,11 +65,34 @@ const services = [
     features: [
       "Hasta 5 computadoras",
       "3 horas de soporte remoto",
-      "Control mensual de backups",
+      "Control de backups y restauración acordada",
       "Monitoreo de servicios acordados",
-      "Informe y próximos pasos"
+      "Panel privado e informe mensual"
     ],
     cta: "Evaluar mi empresa"
+  }
+];
+
+const deliverables = [
+  {
+    title: "Diagnóstico con evidencia",
+    body: "Revisamos almacenamiento, actualizaciones, antivirus, firewall, cifrado, administradores y backup sin modificar el equipo.",
+    proof: "Informe HTML + evidencia JSON"
+  },
+  {
+    title: "Monitoreo continuo",
+    body: "Controlamos los servicios acordados y conservamos historial para distinguir una falla real de una impresión.",
+    proof: "Panel privado + disponibilidad"
+  },
+  {
+    title: "Backup verificable",
+    body: "Registramos antigüedad, destino y resultado. La copia se considera confiable recién después de una restauración.",
+    proof: "Registro de prueba de recuperación"
+  },
+  {
+    title: "Seguimiento mensual",
+    body: "Resumimos incidentes, acciones realizadas y hasta tres prioridades para el mes siguiente.",
+    proof: "Informe corto para decidir"
   }
 ];
 
@@ -105,6 +128,11 @@ const faqs = [
     question: "¿Pueden acceder sin autorización?",
     answer:
       "No. Cada acceso remoto o revisión se coordina y requiere autorización. No solicitamos contraseñas personales."
+  },
+  {
+    question: "¿Qué se instala en mis equipos?",
+    answer:
+      "El diagnóstico inicial puede ejecutarse en modo de solo lectura y genera un informe local. El monitoreo permanente se instala únicamente si el alcance lo requiere y queda documentado."
   }
 ];
 
@@ -131,9 +159,9 @@ export default function Home() {
           <span>Guardián <strong>PyME</strong></span>
         </a>
         <nav aria-label="Navegación principal">
+          <a href="#entregables">Qué recibís</a>
           <a href="#servicios">Servicios</a>
           <a href="#proceso">Cómo trabajamos</a>
-          <a href="#preguntas">Preguntas</a>
         </nav>
         <a className="button button-small" href="#contacto">
           Pedir diagnóstico
@@ -160,9 +188,9 @@ export default function Home() {
               </a>
             </div>
             <div className="hero-proof" aria-label="Características del servicio">
-              <span>Alcance por escrito</span>
-              <span>Sin permanencia obligatoria</span>
-              <span>Lenguaje claro</span>
+              <span>Diagnóstico con evidencia</span>
+              <span>Panel privado</span>
+              <span>Informe mensual</span>
             </div>
           </div>
 
@@ -208,6 +236,27 @@ export default function Home() {
                 <span>{problem.number}</span>
                 <h3>{problem.title}</h3>
                 <p>{problem.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="outcomes-section section" id="entregables">
+          <div className="section-heading">
+            <p className="eyebrow">QUÉ RECIBÍS</p>
+            <h2>Controles que terminan en una decisión.</h2>
+            <p>
+              No vendemos una caja ni un tablero decorativo. Cada función deja
+              una evidencia comprensible y un próximo paso.
+            </p>
+          </div>
+          <div className="outcome-grid">
+            {deliverables.map((deliverable, index) => (
+              <article className="outcome-card" key={deliverable.title}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{deliverable.title}</h3>
+                <p>{deliverable.body}</p>
+                <strong>{deliverable.proof}</strong>
               </article>
             ))}
           </div>

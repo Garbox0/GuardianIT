@@ -1,0 +1,48 @@
+metrics: true
+
+storage:
+  type: sqlite
+  path: /data/gatus.db
+  caching: true
+  maximum-number-of-results: 500
+  maximum-number-of-events: 100
+
+ui:
+  title: "Guardián PyME | Estado"
+  header: "Guardián PyME"
+  dashboard-heading: "Nodo de demostración"
+  dashboard-subheading: "Continuidad y disponibilidad, sin exposición a Internet"
+  default-sort-by: group
+
+web:
+  port: 8080
+
+endpoints:
+  - name: "Conectividad HTTPS"
+    group: "Infraestructura"
+    url: "https://www.cloudflare.com/cdn-cgi/trace"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 3000"
+
+  - name: "Motor de monitoreo"
+    group: "Infraestructura"
+    url: "http://127.0.0.1:8080/api/v1/endpoints/statuses"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 1000"
+    ui:
+      hide-url: true
+      hide-hostname: true
+      hide-port: true
+
+  - name: "Sitio comercial privado"
+    group: "Guardián PyME"
+    url: "https://guardian-pyme-operaciones.gbrlescalada.chatgpt.site"
+    interval: 2m
+    conditions:
+      - "[STATUS] == 401"
+      - "[RESPONSE_TIME] < 5000"
+      - "[CERTIFICATE_EXPIRATION] > 168h"

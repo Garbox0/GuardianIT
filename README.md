@@ -25,9 +25,25 @@ npm run check
 
 - Landing responsive con precios y preguntas frecuentes.
 - Formulario local que prepara una consulta de WhatsApp sin almacenar datos.
-- Plantillas comerciales y operativas en `docs/`.
-- Sin panel, cuentas ni base de datos: se agregan únicamente cuando exista una
-  necesidad pagada.
+- Diagnóstico Windows de solo lectura con informe HTML y evidencia JSON.
+- Panel privado de disponibilidad con historial en la Raspberry.
+- Generador de informe resumido desde el monitoreo.
+- Plantillas comerciales, autorización y onboarding en `docs/`.
+
+## Herramientas operativas
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\windows\guardian-audit.ps1 `
+  -ClientName "Nombre del cliente" `
+  -BackupPath "D:\Backups"
+```
+
+```bash
+npm run report -- http://100.80.237.96:8080 "Nombre del cliente"
+```
+
+El producto y sus límites están explicados en
+[`docs/07-producto-operativo.md`](docs/07-producto-operativo.md).
 
 ## Antes de publicar
 
@@ -36,3 +52,9 @@ npm run check
 - Validar precios, impuestos y condiciones con un profesional local.
 - Reemplazar precios orientativos si cambia el alcance.
 - Probar el enlace de WhatsApp desde un teléfono.
+
+## Nodo de demostración
+
+La Raspberry ejecuta un panel de monitoreo privado para demostraciones. La
+configuración reproducible y el procedimiento operativo están en
+[`infra/raspberry`](infra/raspberry/README.md).

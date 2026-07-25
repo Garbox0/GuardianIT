@@ -413,6 +413,45 @@ h2 {
   font-size: 15px;
 }
 
+.outcomes-section {
+  background: var(--surface);
+}
+
+.outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.outcome-card {
+  padding: 34px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: white;
+}
+
+.outcome-card > span {
+  color: var(--green);
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.outcome-card h3 {
+  margin: 34px 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.outcome-card p {
+  color: var(--muted);
+}
+
+.outcome-card strong {
+  color: var(--green-dark);
+  font-size: 13px;
+}
+
 .services-section {
   background: #e9eee8;
 }
@@ -890,6 +929,7 @@ footer p {
   }
 
   .problem-grid,
+  .outcome-grid,
   .fit-section {
     grid-template-columns: 1fr;
   }

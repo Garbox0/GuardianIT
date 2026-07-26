@@ -16,7 +16,9 @@ Este índice evita improvisar frente al primer cliente.
 2. Obtener la [autorización escrita](13-autorizacion-diagnostico.md).
 3. Usar el [checklist de diagnóstico](02-checklist-diagnostico.md).
 4. Entregar el [informe](03-informe-cliente.md).
-5. Presupuestar correcciones por separado.
+5. Si contrata continuidad, seguir la
+   [comunicación y registro de monitoreo](20-comunicacion-y-registro-cliente.md).
+6. Presupuestar correcciones por separado.
 
 ## Cómo registrar la información
 

@@ -42,8 +42,9 @@ Una fecha reciente no demuestra que el contenido sea recuperable.
 Desde un equipo conectado a Tailscale:
 
 ```bash
-npm run report -- http://100.80.237.96:8080 "Nombre del cliente" > informe.md
+npm run report -- http://100.80.237.96:8080 "Nombre del cliente" "CLI-2026-001" --html > informe.html
 ```
 
 Completar el informe con incidentes atendidos, acciones realizadas y tres
-próximas prioridades.
+próximas prioridades. El tercer argumento debe coincidir exactamente con el
+grupo asignado al cliente en Gatus; así el informe no mezcla información.

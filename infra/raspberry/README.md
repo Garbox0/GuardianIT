@@ -48,7 +48,7 @@ Editar `config/config.yaml` y sumar un endpoint. Ejemplo:
 
 ```yaml
   - name: "Web del cliente"
-    group: "Cliente"
+    group: "CLI-2026-001"
     url: "https://cliente.example"
     interval: 1m
     conditions:

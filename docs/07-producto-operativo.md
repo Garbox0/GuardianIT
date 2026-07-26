@@ -16,7 +16,7 @@ El cliente no compra una Raspberry ni un panel. Compra cinco resultados:
 |---|---|---|
 | Diagnóstico Windows | Informe HTML y JSON | Identifica problemas concretos sin modificar el equipo |
 | Postura de dominio y correo | HTTPS, cabeceras, MX, SPF, DMARC y CAA | Detecta configuraciones públicas débiles sin escaneo invasivo |
-| Monitoreo | Panel privado e historial | Reduce tiempo hasta detectar una caída |
+| Monitoreo | Informe individual e historial | Reduce tiempo hasta detectar una caída |
 | Control de backup | Fecha, destino y restauración documentada | Evita descubrir una copia inútil durante una emergencia |
 | Gestión de incidentes | Registro breve de causa, acción y resultado | Evita repetir diagnósticos |
 | Informe mensual | Disponibilidad, incidentes y tres prioridades | Permite decidir en qué invertir |

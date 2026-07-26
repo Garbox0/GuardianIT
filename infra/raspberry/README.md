@@ -66,6 +66,21 @@ No colocar contraseñas ni tokens en el nombre, la URL o las condiciones visible
 del panel. Los chequeos internos deben usar IP privadas y mantener ocultos URL,
 host y puerto en la interfaz.
 
+Para un servicio público autorizado puede comprobarse un puerto exacto, sin
+recorrer otras direcciones ni puertos:
+
+```yaml
+  - name: "Servidor público"
+    group: "CLI-2026-001"
+    url: "tcp://203.0.113.10:443"
+    interval: 1m
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: ntfy
+        description: "El servicio público acordado no acepta conexiones."
+```
+
 ## Resguardo del proyecto retirado
 
 OpenHealth se retiró sin borrar sus volúmenes. El respaldo final está en:

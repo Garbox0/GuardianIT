@@ -71,6 +71,21 @@ function Get-DefenderFinding {
     New-Finding "Protección antimalware" "Correcto" "Informativa" "Defender en tiempo real; firmas de hace $SignatureAge días; protección contra alteraciones activa." "Sin acción inmediata."
 }
 
+function Get-WindowsEventFinding {
+    param(
+        [int]$CriticalCount,
+        [int]$ErrorCount,
+        [string]$RepeatedEvents = ""
+    )
+
+    $evidence = "$CriticalCount críticos y $ErrorCount errores en los últimos 7 días."
+    if ($RepeatedEvents) { $evidence += " Repetidos: $RepeatedEvents." }
+    if ($CriticalCount -gt 0 -or $ErrorCount -ge 20) {
+        return New-Finding "Eventos de Windows" "Revisar" "Media" $evidence "Confirmar si los eventos coinciden con interrupciones observadas."
+    }
+    New-Finding "Eventos de Windows" "Sin patrón relevante" "Informativa" $evidence "Mantener revisión periódica."
+}
+
 if ($SelfTest) {
     if ((Get-DiskFinding "C:" 5 100).Severity -ne "Alta") {
         throw "Falló el control de disco crítico"
@@ -83,6 +98,9 @@ if ($SelfTest) {
     }
     if ((Get-DefenderFinding $true $true 0 $true).Status -ne "Correcto") {
         throw "Falló el control de Defender saludable"
+    }
+    if ((Get-WindowsEventFinding 1 2).Severity -ne "Media") {
+        throw "Falló el control de eventos críticos"
     }
     Write-Output "Guardian audit self-test: OK"
     return
@@ -129,6 +147,19 @@ try {
         $fallbackProducts))
 } catch {
     $findings.Add((New-Finding "Protección antimalware" "No verificable" "Media" $_.Exception.Message "Confirmar protección en tiempo real, firmas y protección contra alteraciones."))
+}
+
+try {
+    $detections = @(Get-MpThreatDetection | Where-Object {
+        $_.InitialDetectionTime -ge (Get-Date).AddDays(-30)
+    })
+    if ($detections.Count) {
+        $findings.Add((New-Finding "Detecciones de Defender" "Revisar" "Media" "$($detections.Count) detecciones registradas en los últimos 30 días." "Confirmar que cada detección esté resuelta y que no se repita."))
+    } else {
+        $findings.Add((New-Finding "Detecciones de Defender" "Sin detecciones recientes" "Informativa" "Defender no informó detecciones en los últimos 30 días." "Mantener protección y firmas actualizadas."))
+    }
+} catch {
+    $findings.Add((New-Finding "Detecciones de Defender" "No verificable" "Informativa" "El historial no está disponible o se utiliza otro antivirus." "Revisar el historial del producto antivirus instalado."))
 }
 
 try {
@@ -242,6 +273,52 @@ try {
     $findings.Add((New-Finding "Reinicio pendiente" "No verificable" "Informativa" $_.Exception.Message "Revisar manualmente."))
 }
 
+try {
+    $eventStart = (Get-Date).AddDays(-7)
+    $events = @(Get-WinEvent -FilterHashtable @{
+        LogName = @("System", "Application")
+        Level = @(1, 2)
+        StartTime = $eventStart
+    } -MaxEvents 200 -ErrorAction Stop)
+    $criticalCount = @($events | Where-Object Level -eq 1).Count
+    $errorCount = @($events | Where-Object Level -eq 2).Count
+    $repeated = ($events |
+        Group-Object ProviderName, Id |
+        Where-Object Count -ge 3 |
+        Sort-Object Count -Descending |
+        Select-Object -First 3 |
+        ForEach-Object { "$($_.Name) x$($_.Count)" }) -join "; "
+    if ($events.Count -eq 200) {
+        $repeated = if ($repeated) {
+            "$repeated; muestra limitada a 200 eventos"
+        } else {
+            "muestra limitada a 200 eventos"
+        }
+    }
+    $findings.Add((Get-WindowsEventFinding $criticalCount $errorCount $repeated))
+} catch {
+    $findings.Add((New-Finding "Eventos de Windows" "No verificable" "Informativa" "No se pudo leer el resumen de eventos." "Ejecutar con permisos suficientes si este control forma parte del alcance."))
+}
+
+try {
+    $failedLogons = @(Get-WinEvent -FilterHashtable @{
+        LogName = "Security"
+        Id = 4625
+        StartTime = (Get-Date).AddDays(-7)
+    } -MaxEvents 200 -ErrorAction Stop)
+    $failedCount = $failedLogons.Count
+    $failedEvidence = if ($failedCount -eq 200) {
+        "Al menos 200 intentos fallidos en los últimos 7 días; se alcanzó el límite de lectura."
+    } else {
+        "$failedCount intentos fallidos en los últimos 7 días."
+    }
+    $failedSeverity = if ($failedCount -ge 20) { "Media" } else { "Informativa" }
+    $failedStatus = if ($failedCount -ge 20) { "Revisar" } else { "Sin patrón relevante" }
+    $findings.Add((New-Finding "Inicios de sesión fallidos" $failedStatus $failedSeverity $failedEvidence "Comparar con horarios, accesos remotos y bloqueos conocidos; el conteo por sí solo no demuestra un ataque."))
+} catch {
+    $findings.Add((New-Finding "Inicios de sesión fallidos" "No verificable" "Informativa" "El registro de seguridad no estuvo disponible." "Ejecutar con permisos suficientes si este control forma parte del alcance."))
+}
+
 if ($BackupPath) {
     try {
         $latestBackup = Get-ChildItem -LiteralPath $BackupPath -File -Recurse |
@@ -260,7 +337,7 @@ if ($BackupPath) {
 }
 
 $report = [ordered]@{
-    Version = "1.1"
+    Version = "1.2"
     Client = $ClientName
     GeneratedAt = (Get-Date).ToString("o")
     Computer = [ordered]@{

@@ -34,6 +34,15 @@ Repetir hasta un máximo de cinco prioridades.
 | Backup | | |
 | Accesos y MFA | | |
 | Actualizaciones | | |
+| Antivirus, protección en tiempo real y firmas | | |
+| Firewall y cifrado | | |
+| Detecciones recientes del antivirus | | |
+| Eventos críticos y errores de Windows | | |
+| Inicios de sesión fallidos | | |
+| Certificado y redirección HTTPS | | |
+| Encabezados de seguridad web | | |
+| Correo: MX, SPF, DMARC y CAA | | |
+| Monitoreo acordado, si corresponde | | |
 
 ## Próximos pasos
 
@@ -43,6 +52,10 @@ Repetir hasta un máximo de cinco prioridades.
 
 ## Limitaciones
 
-La revisión representa una evaluación limitada de los equipos y controles
-expresamente autorizados. No constituye una prueba de penetración ni garantiza
-la ausencia de fallas, vulnerabilidades o incidentes.
+La revisión representa una evaluación limitada de los equipos, el dominio y
+los controles expresamente autorizados. El análisis de eventos resume
+cantidades y patrones visibles; no constituye monitoreo SIEM 24 × 7 ni prueba
+por sí solo un incidente. Los controles web son indicadores seleccionados de
+configuración relacionados con OWASP Top 10:2025, no una evaluación completa.
+El servicio no constituye una prueba de penetración ni garantiza la ausencia
+de fallas, vulnerabilidades o incidentes.

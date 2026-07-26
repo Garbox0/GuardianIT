@@ -35,7 +35,8 @@ const services = [
     features: [
       "Nos conectamos con vos presente",
       "Revisamos hasta 5 equipos o servicios",
-      "Chequeamos backup, Windows, red y accesos",
+      "Chequeamos backup, antivirus y eventos",
+      "Revisamos red, accesos y dominio",
       "Marcamos hasta 5 prioridades",
       "Te llevás un informe que se entiende"
     ],
@@ -66,7 +67,7 @@ const services = [
       "Hasta 5 computadoras y 5 controles",
       "3 horas mensuales de soporte remoto",
       "Revisión del backup acordado",
-      "Avisos por web, dominio o certificado",
+      "Avisos por web, dominio, certificado o IP acordada",
       "Registro simple de lo que pasó",
       "Acciones autorizadas cuando correspondan"
     ],
@@ -118,7 +119,7 @@ const faqs = [
   {
     question: "¿Esto es un servicio de ciberseguridad?",
     answer:
-      "Incluye controles básicos de accesos, backups y configuración, pero no es una prueba de penetración ni promete impedir todos los incidentes."
+      "Incluye antivirus, firewall, eventos de Windows, accesos y configuración pública del dominio. La revisión web observa algunos indicadores relacionados con OWASP, pero no es una auditoría completa del Top 10 ni una prueba de penetración."
   },
   {
     question: "¿Tengo que contratar un abono?",

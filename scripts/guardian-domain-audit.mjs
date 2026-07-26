@@ -43,7 +43,7 @@ async function certificateDays(host) {
   });
 }
 
-const [mx, rootTxtParts, dmarcTxtParts, caa, webResponse, certificate] =
+const [mx, rootTxtParts, dmarcTxtParts, caa, webResponse, httpResponse, certificate] =
   await Promise.all([
     optional(() => resolveMx(domain)),
     optional(() => resolveTxt(domain)),
@@ -51,6 +51,10 @@ const [mx, rootTxtParts, dmarcTxtParts, caa, webResponse, certificate] =
     optional(() => resolveCaa(domain)),
     fetch(`https://${domain}`, {
       redirect: "follow",
+      signal: AbortSignal.timeout(10_000)
+    }).catch(() => null),
+    fetch(`http://${domain}`, {
+      redirect: "manual",
       signal: AbortSignal.timeout(10_000)
     }).catch(() => null),
     certificateDays(domain)
@@ -62,6 +66,8 @@ const input = {
   dmarcTxt: dmarcTxtParts.map((parts) => parts.join("")),
   caa,
   headers: webResponse ? Object.fromEntries(webResponse.headers) : {},
+  httpStatus: httpResponse?.status ?? null,
+  httpLocation: httpResponse?.headers.get("location") || "",
   certificateDays: certificate.days,
   certificateError: certificate.error
 };
@@ -72,7 +78,7 @@ await mkdir(outputDirectory, { recursive: true });
 await Promise.all([
   writeFile(
     resolve(outputDirectory, `${safeDomain}.json`),
-    JSON.stringify({ Version: "1.0", Domain: domain, GeneratedAt: new Date().toISOString(), Findings: findings }, null, 2),
+    JSON.stringify({ Version: "1.1", Domain: domain, GeneratedAt: new Date().toISOString(), Findings: findings }, null, 2),
     "utf8"
   ),
   writeFile(

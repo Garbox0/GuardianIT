@@ -21,8 +21,8 @@
       <p>Este ejemplo muestra cómo explicamos un problema, por qué importa y qué haríamos después.</p>
       <div class="meta">
         <div><span>Empresa demostrativa</span><strong>Estudio Norte Demo</strong></div>
-        <div><span>Alcance</span><strong>5 equipos Windows</strong></div>
-        <div><span>Fecha ficticia</span><strong>24 de julio de 2026</strong></div>
+        <div><span>Alcance</span><strong>5 equipos + 1 dominio</strong></div>
+        <div><span>Fecha ficticia</span><strong>26 de julio de 2026</strong></div>
       </div>
     </div>
 
@@ -30,8 +30,8 @@
       <div class="section-title"><span>01 · RESUMEN</span><h2>Por dónde conviene empezar.</h2></div>
       <div class="summary">
         <article><strong>1</strong><p>prioridad alta que conviene atender esta semana.</p></article>
-        <article><strong>2</strong><p>mejoras planificables, sin detener la operación.</p></article>
-        <article><strong>7/10</strong><p>controles básicos conformes en el alcance revisado.</p></article>
+        <article><strong>4</strong><p>mejoras que pueden programarse sin frenar la oficina.</p></article>
+        <article><strong>3</strong><p>capas revisadas: equipos, dominio/correo y backup.</p></article>
       </div>
     </section>
 
@@ -51,7 +51,15 @@
       </article>
       <article class="finding">
         <span class="severity low">CONFORME</span>
-        <div><h3>Firewall y protección activa</h3><p>Los cinco equipos informan firewall habilitado y protección antimalware activa. Este control es una fotografía del momento, no una garantía contra incidentes futuros.</p></div>
+        <div><h3>Antivirus, firmas y firewall activos</h3><p>Los cinco equipos informan protección en tiempo real, firmas recientes, protección contra alteraciones y firewall habilitado. Defender no registró detecciones en los últimos 30 días.</p></div>
+      </article>
+      <article class="finding">
+        <span class="severity medium">MEDIA</span>
+        <div><h3>La web no publica una política CSP</h3><p>El sitio usa HTTPS y redirige correctamente, pero no informa Content Security Policy. Es un indicador de configuración web; no demuestra por sí solo que exista una vulnerabilidad explotable.</p><p class="action"><strong>Próximo paso:</strong> definir una política inicial en modo de reporte y validar compatibilidad antes de bloquear recursos.</p></div>
+      </article>
+      <article class="finding">
+        <span class="severity low">CONFORME</span>
+        <div><h3>No aparecen eventos críticos repetidos</h3><p>El resumen de siete días no muestra eventos críticos ni un volumen llamativo de inicios de sesión fallidos. Se guardan conteos y orígenes técnicos, no mensajes completos ni nombres de usuarios.</p></div>
       </article>
     </section>
 
@@ -60,11 +68,28 @@
       <table class="controls">
         <thead><tr><th>Control</th><th>Resultado</th><th>Evidencia entregada</th></tr></thead>
         <tbody>
+          <tr><td class="group" colspan="3">Equipos Windows</td></tr>
           <tr><td>Espacio disponible</td><td class="ok">Conforme</td><td>Detalle por equipo</td></tr>
           <tr><td>Actualizaciones</td><td class="attention">1 pendiente</td><td>Estado y fecha</td></tr>
-          <tr><td>Antivirus y firewall</td><td class="ok">Activos</td><td>Estado informado por Windows</td></tr>
+          <tr><td>Producto antivirus</td><td class="ok">Detectado</td><td>Nombre informado por Windows</td></tr>
+          <tr><td>Tiempo real, firmas y protección contra cambios</td><td class="ok">Activos</td><td>Estado y antigüedad de firmas</td></tr>
+          <tr><td>Detecciones de Defender (30 días)</td><td class="ok">Sin detecciones</td><td>Conteo, sin contenido privado</td></tr>
+          <tr><td>Firewall</td><td class="ok">Perfiles activos</td><td>Estado por perfil</td></tr>
+          <tr><td>Cifrado BitLocker</td><td class="attention">Revisar 1</td><td>Estado de protección</td></tr>
           <tr><td>Cuentas administrativas</td><td class="attention">Revisar 2</td><td>Listado de cuentas, sin contraseñas</td></tr>
+          <tr><td>UAC, SMBv1, Secure Boot e invitado</td><td class="ok">Conformes</td><td>Estado de cada control</td></tr>
+          <tr><td>Escritorio remoto</td><td class="ok">Deshabilitado</td><td>Configuración observada</td></tr>
+          <tr><td>Reinicio pendiente</td><td class="attention">1 equipo</td><td>Estado informado por Windows</td></tr>
+          <tr><td>Eventos de Windows (7 días)</td><td class="ok">Sin patrón relevante</td><td>Conteos y eventos repetidos, sin mensajes completos</td></tr>
+          <tr><td>Inicios de sesión fallidos (7 días)</td><td class="ok">3 observados</td><td>Conteo; no demuestra un ataque</td></tr>
           <tr><td>Backup</td><td class="attention">Sin restauración verificada</td><td>Destino, antigüedad y tamaño</td></tr>
+          <tr><td class="group" colspan="3">Dominio, web y correo</td></tr>
+          <tr><td>Certificado y redirección HTTPS</td><td class="ok">Correctos</td><td>Vencimiento, estado y destino</td></tr>
+          <tr><td>HSTS, protección MIME y referencia</td><td class="ok">Presentes</td><td>Cabeceras públicas</td></tr>
+          <tr><td>Content Security Policy</td><td class="attention">Ausente</td><td>Cabecera no observada</td></tr>
+          <tr><td>Protección contra marcos y Permissions Policy</td><td class="ok">Presentes</td><td>Cabeceras públicas</td></tr>
+          <tr><td>MX, SPF y DMARC</td><td class="ok">Configurados</td><td>Registros DNS públicos</td></tr>
+          <tr><td>CAA</td><td class="ok">Detectado</td><td>Autoridades permitidas</td></tr>
         </tbody>
       </table>
     </section>
@@ -78,8 +103,21 @@
       </div>
     </section>
 
+    <section>
+      <div class="section-title"><span>05 · SI CONTRATÁS EL ABONO</span><h2>Qué podemos vigilar después.</h2></div>
+      <table class="controls">
+        <thead><tr><th>Objetivo autorizado</th><th>Qué comprobamos</th><th>Qué recibe el cliente</th></tr></thead>
+        <tbody>
+          <tr><td>Sitio o sistema web</td><td>Respuesta, contenido esperado y demora</td><td>Aviso, recuperación e historial</td></tr>
+          <tr><td>Dominio y certificado</td><td>Vencimiento y disponibilidad HTTPS</td><td>Aviso antes de requerir una acción</td></tr>
+          <tr><td>IP pública o puerto acordado</td><td>Conectividad del servicio exacto, sin barrer la red</td><td>Aviso de caída y recuperación</td></tr>
+          <tr><td>Backup acordado</td><td>Antigüedad y restauración programada</td><td>Registro del control y resultado</td></tr>
+        </tbody>
+      </table>
+    </section>
+
     <section class="limits">
-      <strong>Alcance y límites.</strong> Este ejemplo representa un diagnóstico inicial de solo lectura. No incluye pruebas de penetración, recuperación forense ni garantiza la ausencia de fallas. En un servicio real, cada acceso se autoriza y el cliente recibe su evidencia técnica por separado.
+      <strong>Alcance y límites.</strong> Este ejemplo representa un diagnóstico inicial de solo lectura. El resumen de logs no es un SIEM ni vigilancia 24 × 7. Los controles web observan configuración pública relacionada con algunas categorías de OWASP Top 10:2025, pero no constituyen una evaluación completa del Top 10 ni un pentest. El monitoreo de una IP o puerto sólo se activa con autorización y alcance escrito.
     </section>
 
     <section class="cta">

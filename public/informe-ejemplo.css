@@ -74,6 +74,7 @@ h2 { margin: 0; font-size: clamp(30px, 5vw, 48px); line-height: 1.05; letter-spa
 .controls th, .controls td { padding: 16px; border-bottom: 1px solid var(--line); text-align: left; }
 .controls th { background: var(--ink); color: white; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
 .controls td { font-size: 14px; }
+.controls .group { background: #e8ece8; color: var(--ink); font-size: 12px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
 .ok { color: var(--green); font-weight: 800; }
 .attention { color: var(--warning); font-weight: 800; }
 .next {

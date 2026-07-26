@@ -22,6 +22,8 @@ Incluye:
 - Sesión remota de hasta 2 horas.
 - Revisión de hasta 5 equipos o servicios críticos.
 - Estado de red, backups y accesos administrativos.
+- Antivirus, protección en tiempo real y resumen de eventos de Windows.
+- Certificado, cabeceras web y registros públicos de correo.
 - Inventario básico.
 - Cinco prioridades.
 - Informe breve.
@@ -48,6 +50,8 @@ entregable, precio, plazo y exclusiones.
 - Hasta 3 horas de soporte remoto mensuales, no acumulables.
 - Revisión mensual de backup.
 - Monitoreo de hasta 5 servicios acordados.
+- Una IP pública o puerto específico puede incluirse con autorización escrita;
+  no se realizan barridos de red.
 - Validación, aviso y registro de alertas en horario comercial.
 - Ejecución de acciones previamente autorizadas, dentro de las horas incluidas.
 - Informe mensual.

@@ -6,14 +6,25 @@
 
 | Capa | Herramienta | Controles |
 |---|---|---|
-| Windows | `guardian-audit.ps1` | Disco, Defender, firmas, protección contra alteraciones, firewall, actualizaciones, BitLocker, administradores, UAC, SMBv1, Secure Boot, invitado, RDP, reinicio pendiente y backup |
-| Dominio y correo | `guardian-domain-audit.mjs` | Certificado HTTPS, HSTS, CSP, protección MIME, política de referencia, MX, SPF, DMARC y CAA |
+| Windows | `guardian-audit.ps1` | Disco, antivirus, Defender, firmas, protección contra alteraciones, detecciones recientes, firewall, actualizaciones, BitLocker, administradores, UAC, SMBv1, Secure Boot, invitado, RDP, reinicio pendiente, eventos críticos, inicios fallidos y backup |
+| Dominio y correo | `guardian-domain-audit.mjs` | Certificado y redirección HTTPS, HSTS, CSP, protección MIME, marcos, permisos, política de referencia, MX, SPF, DMARC y CAA |
 | Evidencia | JSON + HTML | Resultado fechado y portable por equipo y dominio |
 | Priorización | `guardian-consolidate.mjs` | Agrupa hallazgos repetidos y propone hasta cinco prioridades |
 | Backup | Procedimiento supervisado | Antigüedad, destino y restauración de prueba |
 
 Los scripts son de solo lectura. No instalan agentes, no modifican políticas y
 no ejecutan pruebas de explotación.
+
+El resumen de eventos conserva conteos y patrones técnicos, no mensajes
+completos ni nombres de usuarios. Sirve para orientar una revisión; no es un
+SIEM, EDR ni detección continua de amenazas.
+
+La revisión pública cubre indicadores básicos relacionados con
+`A02:2025 Security Misconfiguration`, `A04:2025 Cryptographic Failures` y la
+preparación operativa de `A09:2025 Security Logging & Alerting Failures`.
+[OWASP define el Top 10](https://owasp.org/www-project-top-ten/) como un
+documento de concientización sobre riesgos de aplicaciones web. Guardián PyME
+no debe presentarlo como cobertura completa del Top 10.
 
 Auditoría pública de un dominio:
 
@@ -39,6 +50,7 @@ Sólo se ejecutan acciones aprobadas:
 La base técnica disponible es:
 
 - Gatus para HTTP, contenido, dominio, certificado e historial;
+- conectividad de una IP pública o puerto exacto autorizado, sin escaneo de red;
 - panel privado por Tailscale;
 - informe de disponibilidad;
 - mensaje automático adaptado al estado e historial de incidente;
@@ -113,6 +125,7 @@ El procedimiento operativo está en `docs/19-runbook-alertas.md`.
 | Inventario de red autorizado | El diagnóstico requiera descubrir activos y exista ventana aprobada |
 | Wazuh, Fleet/osquery o SIEM | Haya varios clientes, personal para atender alertas y un acuerdo de retención |
 | Escáner de vulnerabilidades | Exista autorización escrita, alcance, exclusiones y capacidad para validar falsos positivos |
+| Evaluación OWASP Top 10 completa | Existan aplicación propia, autorización, roles de prueba, entorno acordado y presupuesto separado |
 
 No desplegar estas plataformas sólo para mostrar tecnología. Cada alerta crea
 una obligación operativa y cada dato recolectado aumenta nuestra responsabilidad.

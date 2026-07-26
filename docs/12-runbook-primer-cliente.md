@@ -61,11 +61,19 @@ Antes de conectarse o visitar:
 1. Entrevistar al responsable durante 10–15 minutos.
 2. Identificar activos y servicios críticos.
 3. Ejecutar la auditoría de solo lectura en cada Windows autorizado.
-4. Revisar red, accesos y backup sin copiar contenido privado.
-5. Registrar evidencia mínima con hora y activo.
-6. No corregir hallazgos durante el diagnóstico.
+4. Revisar antivirus, firewall, actualizaciones, accesos, eventos y backup sin
+   copiar mensajes, nombres de usuario ni contenido privado.
+5. Ejecutar la auditoría pública del dominio si forma parte del alcance.
+6. Registrar evidencia mínima con hora y activo.
+7. No corregir hallazgos durante el diagnóstico.
 
 Si una prueba puede interrumpir el trabajo, se omite y se documenta.
+Los eventos se informan como conteos y patrones, no como un SIEM 24 × 7. Los
+controles web se presentan como indicadores seleccionados de configuración,
+no como una evaluación OWASP completa ni una prueba de penetración.
+
+El monitoreo de una IP pública o un puerto requiere autorización escrita,
+destino exacto y finalidad acordada. No realizar descubrimiento ni barridos.
 
 ## 7. Priorizar
 

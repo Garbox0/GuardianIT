@@ -18,11 +18,41 @@ test("marca SPF y DMARC ausentes cuando el dominio recibe correo", () => {
     dmarcTxt: [],
     caa: [],
     headers: {},
+    httpStatus: 200,
+    httpLocation: "",
     certificateDays: 60
   });
 
   assert.equal(findings.find((item) => item.Control === "SPF").Severity, "Alta");
   assert.equal(findings.find((item) => item.Control === "DMARC").Severity, "Alta");
+  assert.equal(
+    findings.find((item) => item.Control === "Redirección a HTTPS").Severity,
+    "Media"
+  );
+});
+
+test("reconoce redirección y protección contra marcos", () => {
+  const findings = assessDomain({
+    mx: [],
+    rootTxt: [],
+    dmarcTxt: [],
+    caa: [],
+    headers: {
+      "content-security-policy": "default-src 'self'; frame-ancestors 'none'"
+    },
+    httpStatus: 308,
+    httpLocation: "https://example.com/",
+    certificateDays: 60
+  });
+
+  assert.equal(
+    findings.find((item) => item.Control === "Redirección a HTTPS").Status,
+    "Correcta"
+  );
+  assert.equal(
+    findings.find((item) => item.Control === "Protección contra marcos").Status,
+    "Presente"
+  );
 });
 
 test("escapa el dominio al generar el HTML", () => {

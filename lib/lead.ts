@@ -15,3 +15,10 @@ export function buildLeadMessage(lead: Lead) {
     `Problema principal: ${lead.problem.trim()}`
   ].join("\n");
 }
+
+export function buildWhatsAppUrl(number: string, message: string) {
+  const digits = number.replace(/\D/g, "");
+  return digits
+    ? `https://wa.me/${digits}?text=${encodeURIComponent(message.trim())}`
+    : "";
+}

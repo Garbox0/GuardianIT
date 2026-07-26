@@ -11,6 +11,7 @@ if (!response.ok) {
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
+await cp("public", output, { recursive: true });
 await writeFile(resolve(output, "index.html"), await response.text());
 await cp("dist/client/_next", resolve(output, "_next"), { recursive: true });
 console.log(output);

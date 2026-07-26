@@ -21,6 +21,12 @@
 - Puertos abiertos en el router: ninguno.
 - WAF: bloqueo de scanners comunes y de métodos distintos de
   `GET`, `HEAD` y `OPTIONS`.
+- SSH: acceso exclusivo por clave pública para `pi`; contraseña y root
+  deshabilitados.
+- Actualizaciones de seguridad: automáticas mediante `unattended-upgrades`,
+  sin reinicio automático.
+- Hardening: exposición `3.0 OK` para el sitio y `3.2 OK` para el túnel según
+  `systemd-analyze security`.
 
 OpenHealth fue retirado. No quedan contenedores `current-*` activos y se
 conservaron los volúmenes `current_postgres_data` y `current_keycloak_data`.

@@ -1,0 +1,16 @@
+{
+  "name": "Guardián PyME",
+  "short_name": "Guardián",
+  "description": "Soporte, seguridad y continuidad informática para pymes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1e9",
+  "theme_color": "#075c46",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

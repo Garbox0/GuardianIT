@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { buildLeadMessage } from "@/lib/lead";
+import { buildLeadMessage, buildWhatsAppUrl } from "@/lib/lead";
 
 type Props = {
   whatsappNumber: string;
@@ -21,12 +21,7 @@ export default function LeadForm({ whatsappNumber }: Props) {
     });
 
     if (whatsappNumber) {
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-        "_blank",
-        "noopener,noreferrer"
-      );
-      setStatus("Abrimos WhatsApp con tu consulta preparada.");
+      window.location.assign(buildWhatsAppUrl(whatsappNumber, message));
       return;
     }
 
@@ -72,7 +67,7 @@ export default function LeadForm({ whatsappNumber }: Props) {
         />
       </label>
       <button className="button form-button" type="submit">
-        Preparar consulta
+        Continuar por WhatsApp
       </button>
       <p className="privacy-note">
         No guardamos estos datos en el sitio. Se usan solamente para preparar

@@ -11,13 +11,15 @@
 En cada PC Windows autorizado:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\guardian-audit.ps1 `
+powershell -ExecutionPolicy Bypass -File .\tools\windows\guardian-audit.ps1 `
   -ClientName "Nombre del cliente" `
-  -BackupPath "D:\Backups"
+  -BackupPath "D:\Backups" `
+  -OutputDirectory "D:\Clientes\CLI-2026-001\03-diagnostico"
 ```
 
 Entregar el HTML. Conservar el JSON como evidencia técnica y no incluir
-contraseñas.
+contraseñas. La carpeta de salida debe quedar fuera del repositorio y del
+directorio público del sitio.
 
 ## 3. Prioridades
 

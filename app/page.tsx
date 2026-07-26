@@ -105,6 +105,11 @@ const steps = [
 
 const faqs = [
   {
+    question: "¿Puedo empezar sin una reunión de venta?",
+    answer:
+      "Sí. Cuando la reserva online está disponible, podés contratar el diagnóstico desde esta página. Si no, enviás la consulta por WhatsApp y recibís alcance y precio por escrito antes de pagar."
+  },
+  {
     question: "¿Esto es un servicio de ciberseguridad?",
     answer:
       "Incluye controles básicos de accesos, backups y configuración, pero no es una prueba de penetración ni promete impedir todos los incidentes."
@@ -141,6 +146,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: site.name,
+    url: site.url,
     description: site.description,
     areaServed: site.area,
     telephone: site.whatsappDisplay,
@@ -154,6 +160,9 @@ export default function Home() {
 
   return (
     <>
+      <a className="skip-link" href="#contenido">
+        Ir al contenido
+      </a>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Guardián PyME, inicio">
           <Logo />
@@ -164,34 +173,45 @@ export default function Home() {
           <a href="#servicios">Servicios</a>
           <a href="#proceso">Cómo trabajamos</a>
         </nav>
-        <a className="button button-small" href="#contacto">
-          Pedir diagnóstico
+        <a
+          className="button button-small"
+          href={site.purchaseUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={site.purchaseLabel}
+        >
+          Consultar
         </a>
       </header>
 
-      <main>
+      <main id="contenido">
         <section className="hero" id="inicio">
           <div className="hero-copy">
-            <p className="eyebrow">SOPORTE INFORMÁTICO PARA EMPRESAS</p>
+            <p className="eyebrow">ZONA NORTE Y CABA · SOPORTE REMOTO EN ARGENTINA</p>
             <h1>
               Que un problema técnico no decida cuándo <em>frena tu negocio.</em>
             </h1>
             <p className="hero-lead">
-              Ordenamos, protegemos y simplificamos la tecnología de pequeñas
-              empresas que no tienen personal de sistemas.
+              Detectamos qué puede detener tu operación y te entregamos
+              prioridades concretas, sin obligarte a contratar un abono.
             </p>
             <div className="hero-actions">
-              <a className="button" href="#contacto">
-                Quiero una revisión inicial
+              <a
+                className="button"
+                href={site.purchaseUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {site.purchaseLabel}
               </a>
               <a className="text-link" href="#servicios">
-                Ver servicios <span aria-hidden="true">→</span>
+                Ver diagnóstico y precio <span aria-hidden="true">→</span>
               </a>
             </div>
             <div className="hero-proof" aria-label="Características del servicio">
-              <span>Diagnóstico con evidencia</span>
-              <span>Panel privado</span>
-              <span>Informe mensual</span>
+              <span>Pago único</span>
+              <span>Sin abono obligatorio</span>
+              <span>Acceso con autorización</span>
             </div>
           </div>
 
@@ -288,9 +308,31 @@ export default function Home() {
                     <li key={feature}>{feature}</li>
                   ))}
                 </ul>
-                <a className="card-link" href="#contacto">
-                  {service.cta} <span aria-hidden="true">→</span>
+                {index === 0 && (
+                  <p className="service-note">
+                    Pago único. No inicia una suscripción ni un abono mensual.
+                  </p>
+                )}
+                <a
+                  className={index === 0 ? "button service-cta" : "card-link"}
+                  href={index === 0 ? site.purchaseUrl : "#contacto"}
+                  {...(index === 0
+                    ? { target: "_blank", rel: "noreferrer" }
+                    : {})}
+                >
+                  {index === 0 ? site.purchaseLabel : service.cta}
+                  {index !== 0 && <span aria-hidden="true"> →</span>}
                 </a>
+                {index === 0 && site.bookingLink && (
+                  <a
+                    className="booking-link"
+                    href={site.bookingLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    ¿Ya pagaste? Reservá tu turno
+                  </a>
+                )}
               </article>
             ))}
           </div>
@@ -385,7 +427,11 @@ export default function Home() {
               <span>Disponibilidad</span>
               <strong>{site.availability}</strong>
               <span>WhatsApp</span>
-              <strong>{site.whatsappDisplay}</strong>
+              <strong>
+                <a href={site.whatsappUrl} target="_blank" rel="noreferrer">
+                  {site.whatsappDisplay}
+                </a>
+              </strong>
             </div>
           </div>
           <LeadForm whatsappNumber={site.whatsappNumber} />
@@ -406,6 +452,15 @@ export default function Home() {
         </p>
         <span>© {new Date().getFullYear()} Guardián PyME</span>
       </footer>
+
+      <a
+        className="mobile-cta"
+        href={site.purchaseUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {site.purchaseLabel}
+      </a>
 
       <script
         type="application/ld+json"

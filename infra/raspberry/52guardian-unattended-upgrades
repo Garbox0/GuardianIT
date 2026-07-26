@@ -1,0 +1,2 @@
+// Apply security updates automatically, but never reboot the host unattended.
+Unattended-Upgrade::Automatic-Reboot "false";

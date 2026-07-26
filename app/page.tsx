@@ -214,6 +214,7 @@ export default function Home() {
         </a>
         <nav aria-label="Navegación principal">
           <a href="#entregables">Qué recibís</a>
+          <a href="/centro-guardian.html">Demo del panel</a>
           <a href="#servicios">Servicios</a>
           <a href="#proceso">Cómo trabajamos</a>
         </nav>
@@ -328,14 +329,19 @@ export default function Home() {
           </div>
           <div className="sample-report">
             <div>
-              <strong>Antes de pagar, mirá un informe.</strong>
+              <strong>Antes de pagar, mirá qué recibe un cliente.</strong>
               <span>
-                Es ficticio, pero muestra exactamente el tipo de explicación que entregamos.
+                Panel e informe con datos ficticios, sin registro ni información privada.
               </span>
             </div>
-            <a className="button button-outline" href="/informe-ejemplo.html">
-              Ver informe de ejemplo <span aria-hidden="true">→</span>
-            </a>
+            <div className="sample-actions">
+              <a className="button" href="/centro-guardian.html">
+                Abrir Centro Guardián <span aria-hidden="true">→</span>
+              </a>
+              <a className="button button-outline" href="/informe-ejemplo.html">
+                Ver informe
+              </a>
+            </div>
           </div>
         </section>
 

@@ -490,6 +490,12 @@ h2 {
   gap: 4px;
 }
 
+.sample-report .sample-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+}
+
 .sample-report strong {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 22px;
@@ -1032,6 +1038,11 @@ footer p {
   }
 
   .sample-report {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sample-report .sample-actions {
     align-items: stretch;
     flex-direction: column;
   }

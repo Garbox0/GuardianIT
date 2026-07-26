@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Demostración del panel de continuidad de Guardián PyME: servicios, backups, seguridad y registro de incidentes.">
+  <title>Centro Guardián · Demostración</title>
+  <link rel="canonical" href="https://aerosftp.com/centro-guardian.html">
+  <link rel="icon" href="/icon.svg">
+  <link rel="stylesheet" href="/centro-guardian.css">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Guardián PyME, volver al inicio">
+      <img src="/icon.svg" alt="" width="38" height="38">
+      <span>Guardián <strong>PyME</strong></span>
+    </a>
+    <div class="demo-label"><span></span> DEMO · DATOS FICTICIOS</div>
+    <a class="back-link" href="/">Volver al sitio</a>
+  </header>
+
+  <main id="contenido">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">CENTRO GUARDIÁN · ESTUDIO NORTE</p>
+        <h1>Tu oficina,<br><em>en una sola vista.</em></h1>
+        <p>Una explicación simple de qué está funcionando, qué requiere atención y qué hicimos cuando algo falló.</p>
+      </div>
+      <div class="overall-card">
+        <div class="overall-top">
+          <span class="pulse"></span>
+          <span>ESTADO GENERAL</span>
+          <time datetime="2026-07-26T11:58:00-03:00">Actualizado hace 2 min</time>
+        </div>
+        <strong>Operativo</strong>
+        <p>Sin incidentes activos. Hay una mejora de seguridad pendiente.</p>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Resumen del servicio">
+      <article>
+        <span>Controles activos</span>
+        <strong>5</strong>
+        <small>web, certificado, backup y equipos</small>
+      </article>
+      <article>
+        <span>Disponibilidad</span>
+        <strong>99,97%</strong>
+        <small>últimos 30 días</small>
+      </article>
+      <article>
+        <span>Incidentes activos</span>
+        <strong>0</strong>
+        <small>uno resuelto este mes</small>
+      </article>
+      <article>
+        <span>Próxima acción</span>
+        <strong>1</strong>
+        <small>requiere autorización</small>
+      </article>
+    </section>
+
+    <section class="workspace">
+      <div class="signals">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SEÑALES</p>
+            <h2>Lo importante, sin ruido.</h2>
+          </div>
+          <span>Última comprobación: 11:58</span>
+        </div>
+
+        <div class="signal-grid">
+          <article class="signal">
+            <div class="signal-title"><span class="state ok">✓</span><h3>Web y facturación</h3></div>
+            <strong>Operativo</strong>
+            <p>Respuesta en 182 ms. El contenido esperado está disponible.</p>
+            <footer><span>Verificado 11:58</span><span class="tag">AUTOMÁTICO</span></footer>
+          </article>
+
+          <article class="signal">
+            <div class="signal-title"><span class="state ok">✓</span><h3>Dominio y certificado</h3></div>
+            <strong>47 días</strong>
+            <p>HTTPS válido. Avisaremos antes de que requiera renovación.</p>
+            <footer><span>Verificado 08:00</span><span class="tag">AUTOMÁTICO</span></footer>
+          </article>
+
+          <article class="signal">
+            <div class="signal-title"><span class="state ok">✓</span><h3>Backup acordado</h3></div>
+            <strong>Hace 18 horas</strong>
+            <p>Última copia visible. Restauración de muestra probada el 18/07.</p>
+            <footer><span>Verificado 10:30</span><span class="tag manual">VALIDADO</span></footer>
+          </article>
+
+          <article class="signal">
+            <div class="signal-title"><span class="state attention">!</span><h3>Equipos Windows</h3></div>
+            <strong>4 de 5 protegidos</strong>
+            <p>Un equipo tiene firmas de antivirus atrasadas y necesita revisión.</p>
+            <footer><span>Detectado ayer</span><span class="tag attention">PENDIENTE</span></footer>
+          </article>
+
+          <article class="signal">
+            <div class="signal-title"><span class="state ok">✓</span><h3>Accesos y eventos</h3></div>
+            <strong>Sin patrón relevante</strong>
+            <p>No observamos eventos críticos ni intentos fallidos fuera de lo habitual.</p>
+            <footer><span>Últimos 7 días</span><span class="tag manual">REVISADO</span></footer>
+          </article>
+
+          <article class="signal">
+            <div class="signal-title"><span class="state info">i</span><h3>Configuración web</h3></div>
+            <strong>1 mejora</strong>
+            <p>Falta una política CSP. No es una urgencia, pero conviene programarla.</p>
+            <footer><span>Revisado hoy</span><span class="tag info">RECOMENDADO</span></footer>
+          </article>
+        </div>
+      </div>
+
+      <aside class="activity">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">REGISTRO</p>
+            <h2>Qué pasó.</h2>
+          </div>
+        </div>
+        <ol class="timeline">
+          <li>
+            <time datetime="2026-07-23T09:12:00-03:00">23 JUL · 09:12</time>
+            <strong>La web dejó de responder</strong>
+            <p>Tres verificaciones consecutivas confirmaron la caída.</p>
+          </li>
+          <li>
+            <time datetime="2026-07-23T09:15:00-03:00">09:15</time>
+            <strong>Aviso enviado</strong>
+            <p>El responsable recibió el diagnóstico inicial y el alcance.</p>
+          </li>
+          <li>
+            <time datetime="2026-07-23T09:18:00-03:00">09:18</time>
+            <strong>Servicio recuperado</strong>
+            <p>La recuperación fue automática. No se realizaron cambios en sistemas del cliente.</p>
+          </li>
+          <li class="quiet">
+            <time datetime="2026-07-26T11:58:00-03:00">HOY · 11:58</time>
+            <strong>Todo operativo</strong>
+            <p>Seguimiento normal, sin una acción necesaria.</p>
+          </li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="decision">
+      <div>
+        <p class="eyebrow">PRÓXIMA DECISIÓN</p>
+        <h2>Actualizar las firmas del equipo 05.</h2>
+        <p>Podemos hacerlo durante la próxima sesión remota. No se ejecutará ningún cambio sin autorización.</p>
+      </div>
+      <span class="decision-state">ESPERANDO APROBACIÓN</span>
+    </section>
+
+    <section class="explanation">
+      <div>
+        <p class="eyebrow">ESTO ES UNA DEMOSTRACIÓN</p>
+        <h2>Los datos son ficticios.<br>La forma de informar, no.</h2>
+      </div>
+      <div>
+        <p>El panel real muestra únicamente los controles acordados con cada cliente. No expone contraseñas, mensajes, nombres de usuario ni contenido privado.</p>
+        <p>Una alerta técnica sólo se comunica como incidente después de validarla. Las acciones sobre sistemas del cliente siempre respetan la autorización pactada.</p>
+        <div class="actions">
+          <a class="button" href="https://mpago.la/2MLSJyJ" target="_blank" rel="noreferrer">Comprar diagnóstico</a>
+          <a class="button secondary" href="/informe-ejemplo.html">Ver informe de ejemplo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Guardián PyME · Continuidad para oficinas</span>
+    <a href="/">aerosftp.com</a>
+  </footer>
+</body>
+</html>

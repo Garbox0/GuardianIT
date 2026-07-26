@@ -4,7 +4,7 @@ import { createServer } from "node:http";
 import { arch, freemem, hostname, loadavg, platform, totalmem, uptime } from "node:os";
 import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { cacheControl, resolveRequestPath } from "./site-server.mjs";
+import { resolveRequestPath } from "./site-server.mjs";
 
 const MIME = {
   ".css": "text/css; charset=utf-8",
@@ -20,6 +20,8 @@ const securityHeaders = {
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY"
 };
+
+export const monitorCacheControl = () => "no-cache, no-store, must-revalidate";
 
 export function filesystemUsage({ blocks, bfree, bavail, bsize }) {
   const total = blocks * bsize;
@@ -120,7 +122,7 @@ export function createMonitorServer({
       const info = await stat(file);
       if (!info.isFile()) throw new Error("Not a file");
       response.writeHead(200, {
-        "Cache-Control": cacheControl(pathname),
+        "Cache-Control": monitorCacheControl(),
         "Content-Length": info.size,
         "Content-Type": MIME[extname(file)] || "application/octet-stream"
       });

@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { buildDashboardModel } from "../infra/raspberry/monitor-dashboard/dashboard.js";
-import { filesystemUsage, gatusProxyPath } from "../infra/raspberry/monitor-server.mjs";
+import {
+  filesystemUsage,
+  gatusProxyPath,
+  monitorCacheControl
+} from "../infra/raspberry/monitor-server.mjs";
 
 const endpoint = (group, name, success, timestamp, duration = 20_000_000) => ({
   group,
@@ -40,4 +44,8 @@ test("calcula uso de disco con los bloques disponibles del sistema", () => {
     filesystemUsage({ blocks: 100, bfree: 25, bavail: 20, bsize: 1024 }),
     { total: 102400, used: 76800, free: 20480, usedPercent: 75 }
   );
+});
+
+test("no cachea assets que deban mantenerse sincronizados", () => {
+  assert.match(monitorCacheControl(), /no-store/);
 });

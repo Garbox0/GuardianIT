@@ -180,7 +180,7 @@ export default function Home() {
           rel="noreferrer"
           aria-label={site.purchaseLabel}
         >
-          Consultar
+          {site.paymentLink ? "Comprar" : "Consultar"}
         </a>
       </header>
 

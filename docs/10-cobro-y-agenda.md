@@ -1,7 +1,13 @@
 # Cobro y agenda sin reunión de venta
 
-El sitio ya admite dos enlaces opcionales. Si todavía no están configurados,
-los botones usan WhatsApp como alternativa.
+Enlaces activos:
+
+- Cobro: `https://mpago.la/2MLSJyJ`.
+- Agenda: `https://calendar.app.google/uTrUozvBsjPKUQfY9`.
+- Disponibilidad: lunes a sábados, de 9:00 a 19:00.
+
+Si un enlace se elimina de la configuración, los botones de compra usan
+WhatsApp como alternativa.
 
 ## 1. Crear el producto de entrada
 

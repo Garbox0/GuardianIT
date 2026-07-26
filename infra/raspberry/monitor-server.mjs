@@ -1,6 +1,7 @@
 import { createReadStream } from "node:fs";
-import { stat } from "node:fs/promises";
+import { stat, statfs } from "node:fs/promises";
 import { createServer } from "node:http";
+import { arch, freemem, hostname, loadavg, platform, totalmem, uptime } from "node:os";
 import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cacheControl, resolveRequestPath } from "./site-server.mjs";
@@ -19,6 +20,36 @@ const securityHeaders = {
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY"
 };
+
+export function filesystemUsage({ blocks, bfree, bavail, bsize }) {
+  const total = blocks * bsize;
+  const used = (blocks - bfree) * bsize;
+  return {
+    total,
+    used,
+    free: bavail * bsize,
+    usedPercent: total ? Math.round((used / total) * 1000) / 10 : 0
+  };
+}
+
+async function systemSnapshot() {
+  const memoryTotal = totalmem();
+  const memoryFree = freemem();
+  const root = filesystemUsage(await statfs("/"));
+  const hdd = await statfs("/mnt/hdd").then(filesystemUsage).catch(() => null);
+  return {
+    hostname: hostname(),
+    platform: platform(),
+    arch: arch(),
+    uptimeSeconds: Math.round(uptime()),
+    load1: Math.round(loadavg()[0] * 100) / 100,
+    memoryTotal,
+    memoryUsed: memoryTotal - memoryFree,
+    memoryUsedPercent: Math.round(((memoryTotal - memoryFree) / memoryTotal) * 1000) / 10,
+    root,
+    hdd
+  };
+}
 
 export function gatusProxyPath(pathname) {
   return pathname === "/api/v1/endpoints/statuses" ||
@@ -56,6 +87,21 @@ export function createMonitorServer({
     if (pathname === "/api/statuses") {
       if (request.method === "HEAD") response.writeHead(200, { "Cache-Control": "no-store" }).end();
       else await proxyGatus(response, `${gatusBase}/api/v1/endpoints/statuses`);
+      return;
+    }
+    if (pathname === "/api/system") {
+      if (request.method === "HEAD") response.writeHead(200, { "Cache-Control": "no-store" }).end();
+      else {
+        try {
+          response.writeHead(200, {
+            "Cache-Control": "no-store",
+            "Content-Type": "application/json; charset=utf-8"
+          }).end(JSON.stringify(await systemSnapshot()));
+        } catch {
+          response.writeHead(500, { "Content-Type": "application/json; charset=utf-8" })
+            .end('{"error":"system metrics unavailable"}');
+        }
+      }
       return;
     }
     const proxiedPath = gatusProxyPath(pathname);

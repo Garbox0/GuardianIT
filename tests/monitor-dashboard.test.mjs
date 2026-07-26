@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { buildDashboardModel } from "../infra/raspberry/monitor-dashboard/dashboard.js";
-import { gatusProxyPath } from "../infra/raspberry/monitor-server.mjs";
+import { filesystemUsage, gatusProxyPath } from "../infra/raspberry/monitor-server.mjs";
 
 const endpoint = (group, name, success, timestamp, duration = 20_000_000) => ({
   group,
@@ -33,4 +33,11 @@ test("el proxy conserva sólo las rutas necesarias para informes", () => {
   );
   assert.equal(gatusProxyPath("/api/v1/config"), null);
   assert.equal(gatusProxyPath("/api/v1/endpoints/key/uptimes/7d"), null);
+});
+
+test("calcula uso de disco con los bloques disponibles del sistema", () => {
+  assert.deepEqual(
+    filesystemUsage({ blocks: 100, bfree: 25, bavail: 20, bsize: 1024 }),
+    { total: 102400, used: 76800, free: 20480, usedPercent: 75 }
+  );
 });

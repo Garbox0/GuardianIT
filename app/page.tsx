@@ -144,17 +144,49 @@ const faqs = [
 export default function Home() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: site.name,
-    url: site.url,
-    description: site.description,
-    areaServed: site.area,
-    telephone: site.whatsappDisplay,
-    priceRange: "$$",
-    serviceType: [
-      "Soporte informático",
-      "Continuidad operativa",
-      "Automatización de procesos"
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        url: site.url,
+        name: site.name,
+        alternateName: "Guardián IT"
+      },
+      {
+        "@type": "Organization",
+        "@id": `${site.url}/#organization`,
+        name: site.name,
+        alternateName: "Guardián IT",
+        url: site.url,
+        logo: {
+          "@type": "ImageObject",
+          url: `${site.url}/logo-512.png`,
+          width: 512,
+          height: 512
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: site.whatsappDisplay,
+          contactType: "customer service",
+          availableLanguage: "Spanish"
+        }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": `${site.url}/#service`,
+        name: site.name,
+        url: site.url,
+        image: `${site.url}/og-image.png`,
+        description: site.description,
+        areaServed: site.area,
+        telephone: site.whatsappDisplay,
+        priceRange: "$$",
+        serviceType: [
+          "Soporte informático",
+          "Continuidad operativa",
+          "Automatización de procesos"
+        ]
+      }
     ]
   };
 
@@ -310,7 +342,8 @@ export default function Home() {
                 </ul>
                 {index === 0 && (
                   <p className="service-note">
-                    Pago único. No inicia una suscripción ni un abono mensual.
+                    Pago único, sin suscripción. Después de pagar, volvé a esta
+                    pestaña y reservá tu turno.
                   </p>
                 )}
                 <a

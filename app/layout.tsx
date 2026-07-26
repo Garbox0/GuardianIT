@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s | Guardián PyME"
   },
   description:
-    "Soporte informático, backups, continuidad y automatización práctica para PyMEs sin personal de sistemas.",
+    "Diagnóstico y soporte informático para PyMEs de Zona Norte y CABA. Revisamos equipos, backups, red y accesos con alcance y precio claros.",
   alternates: {
     canonical: "/"
   },
@@ -16,21 +16,29 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg"
   },
-  keywords: [
-    "soporte informático para empresas",
-    "soporte técnico PyME",
-    "backup empresas",
-    "mantenimiento informático",
-    "automatización PyME"
-  ],
   openGraph: {
-    title: "Guardián PyME",
+    title: "Guardián PyME | Soporte informático para empresas",
     description:
-      "Ordenamos, protegemos y simplificamos la tecnología de tu negocio.",
+      "Diagnóstico y soporte informático para PyMEs de Zona Norte y CABA.",
     type: "website",
     locale: "es_AR",
     siteName: "Guardián PyME",
-    url: "/"
+    url: "/",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Guardián PyME, tecnología que no frena tu negocio"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Guardián PyME | Soporte informático para empresas",
+    description:
+      "Diagnóstico y soporte informático para PyMEs de Zona Norte y CABA.",
+    images: ["/og-image.png"]
   },
   robots: {
     index: true,

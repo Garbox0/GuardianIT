@@ -7,7 +7,8 @@ Este índice evita improvisar frente al primer cliente.
 1. Leer la [oferta comercial](01-oferta-comercial.md).
 2. No prometer tareas que figuren fuera de alcance.
 3. Crear el [Link de Pago y la agenda](10-cobro-y-agenda.md).
-4. Hacer un ensayo completo con una computadora propia.
+4. Configurar la [automatización de ventas](15-automatizacion-de-ventas.md).
+5. Hacer un ensayo completo con una computadora propia.
 
 ## Cuando aparece un cliente
 

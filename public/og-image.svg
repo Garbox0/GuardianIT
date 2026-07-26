@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f4f1e9"/>
+  <circle cx="1060" cy="80" r="320" fill="#e9eee8"/>
+  <circle cx="1060" cy="80" r="220" fill="none" stroke="#087f5b" stroke-opacity=".15" stroke-width="2"/>
+  <path d="M119 58 179 79v47c0 39-24 71-60 84-36-13-60-45-60-84V79l60-21Z" fill="#087f5b"/>
+  <path d="m89 135 19 19 41-42" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="14"/>
+  <text x="215" y="145" fill="#10251f" font-family="Arial, sans-serif" font-size="56" font-weight="600">Guardián</text>
+  <text x="465" y="145" fill="#087f5b" font-family="Arial, sans-serif" font-size="56" font-weight="700">PyME</text>
+  <text x="70" y="320" fill="#10251f" font-family="Georgia, serif" font-size="68">Tecnología que no</text>
+  <text x="70" y="397" fill="#087f5b" font-family="Georgia, serif" font-size="68" font-style="italic">frena tu negocio.</text>
+  <text x="74" y="478" fill="#5e6f69" font-family="Arial, sans-serif" font-size="30">Soporte informático para PyMEs</text>
+  <text x="74" y="523" fill="#5e6f69" font-family="Arial, sans-serif" font-size="26">Zona Norte y CABA · Atención remota en Argentina</text>
+  <rect x="74" y="557" width="296" height="9" rx="4.5" fill="#c8f04b"/>
+</svg>

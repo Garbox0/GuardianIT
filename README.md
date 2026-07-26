@@ -51,6 +51,8 @@ El producto y sus límites están explicados en
 [`docs/07-producto-operativo.md`](docs/07-producto-operativo.md).
 El flujo de autoservicio está en
 [`docs/10-cobro-y-agenda.md`](docs/10-cobro-y-agenda.md).
+La medición y los seguimientos están en
+[`docs/15-automatizacion-de-ventas.md`](docs/15-automatizacion-de-ventas.md).
 
 ## Antes de publicar
 

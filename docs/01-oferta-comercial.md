@@ -48,6 +48,8 @@ entregable, precio, plazo y exclusiones.
 - Hasta 3 horas de soporte remoto mensuales, no acumulables.
 - Revisión mensual de backup.
 - Monitoreo de hasta 5 servicios acordados.
+- Validación, aviso y registro de alertas en horario comercial.
+- Ejecución de acciones previamente autorizadas, dentro de las horas incluidas.
 - Informe mensual.
 - Atención en horario comercial.
 

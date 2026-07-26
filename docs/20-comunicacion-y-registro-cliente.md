@@ -73,6 +73,24 @@ Entregarlo por el canal acordado y guardar una copia fechada en el expediente
 del cliente. La fecha de eliminación de esos registros debe acordarse y quedar
 documentada.
 
+Para generar de una sola vez el informe completo y el mensaje exacto:
+
+```powershell
+npm run report -- http://100.80.237.96:8080 `
+  "Nombre del cliente" `
+  "CLI-2026-001" `
+  --export "D:\Clientes\CLI-2026-001\06-entregables\monitoreo"
+```
+
+La carpeta recibirá dos archivos fechados:
+
+- `informe-monitoreo-....html`, listo para abrir o imprimir como PDF;
+- `mensaje-cliente-....txt`, listo para copiar en WhatsApp o correo.
+
+El texto cambia automáticamente entre tres estados: operación normal,
+desvíos recuperados o una falla activa. Para mostrar sólo el mensaje en la
+terminal, usar `--message`.
+
 ## Cuándo crear un portal
 
 No hace falta para el primer cliente. Incorporar un portal con acceso separado

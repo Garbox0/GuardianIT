@@ -27,6 +27,9 @@ No se modifican configuraciones, eliminan archivos ni reinician equipos sin
 aprobación. Los cambios relevantes deben registrar fecha, responsable y forma
 de reversión.
 
+Las acciones automáticas sobre sistemas del cliente requieren un runbook
+aprobado por escrito, con alcance, límite de intentos, validación y escalamiento.
+
 ## Límites
 
 El servicio reduce riesgos y tiempos de diagnóstico, pero no garantiza

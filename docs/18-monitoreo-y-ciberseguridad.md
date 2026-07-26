@@ -41,8 +41,10 @@ La base técnica disponible es:
 - Gatus para HTTP, contenido, dominio, certificado e historial;
 - panel privado por Tailscale;
 - informe de disponibilidad;
+- mensaje automático adaptado al estado e historial de incidente;
 - revisión periódica Windows;
 - control de backup y restauración acordada;
+- remediación limitada a runbooks aprobados;
 - hasta tres horas de soporte remoto.
 
 ## Herramientas de nuestra infraestructura

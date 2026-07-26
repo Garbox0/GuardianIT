@@ -18,7 +18,9 @@ Este índice evita improvisar frente al primer cliente.
 4. Entregar el [informe](03-informe-cliente.md).
 5. Si contrata continuidad, seguir la
    [comunicación y registro de monitoreo](20-comunicacion-y-registro-cliente.md).
-6. Presupuestar correcciones por separado.
+6. Aplicar solamente la
+   [remediación autorizada](21-remediacion-controlada.md).
+7. Presupuestar correcciones por separado.
 
 ## Cómo registrar la información
 

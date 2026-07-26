@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   filterEndpointsByGroup,
+  renderClientMessage,
   renderMonitoringReport,
   renderMonitoringReportHtml,
   summarizeEndpoints
@@ -27,6 +28,7 @@ test("resume disponibilidad y estado actual", () => {
       failedChecks: 1,
       uptime: 50,
       current: false,
+      observation: "El control no respondió correctamente.",
       lastChecked: "2026-07-25T10:01:00Z"
     }
   ]);
@@ -73,4 +75,47 @@ test("genera un HTML portable sin inyectar datos del cliente", () => {
 
   assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
+});
+
+test("genera el mensaje exacto según el estado del cliente", () => {
+  const failed = renderClientMessage(
+    sample,
+    "Estudio Norte",
+    new Date("2026-07-25T12:00:00Z")
+  );
+  const healthy = renderClientMessage(
+    [
+      {
+        name: "Web",
+        group: "Cliente",
+        uptimePercentage: 100,
+        results: [{ success: true, timestamp: "2026-07-25T12:00:00Z" }]
+      }
+    ],
+    "Estudio Norte",
+    new Date("2026-07-25T12:00:00Z")
+  );
+  const recovered = renderClientMessage(
+    [
+      {
+        name: "Web",
+        group: "Cliente",
+        uptimePercentage: 99.5,
+        results: [
+          { success: false, timestamp: "2026-07-25T11:00:00Z" },
+          { success: true, timestamp: "2026-07-25T12:00:00Z" }
+        ]
+      }
+    ],
+    "Estudio Norte",
+    new Date("2026-07-25T12:00:00Z")
+  );
+
+  assert.match(failed, /requieren atención/);
+  assert.match(failed, /Web: El control no respondió correctamente/);
+  assert.match(healthy, /todos los servicios monitoreados están operativos/);
+  assert.match(healthy, /No hay incidentes activos ni fallas recientes/);
+  assert.match(recovered, /se observaron estos desvíos/);
+  assert.match(recovered, /1 verificación reciente con falla/);
+  assert.match(recovered, /No hay incidentes activos en este momento/);
 });

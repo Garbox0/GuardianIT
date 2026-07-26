@@ -7,101 +7,12 @@
   <meta name="description" content="Ejemplo ficticio del informe entregado por Guardián PyME.">
   <title>Informe de ejemplo | Guardián PyME</title>
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <style>
-    :root {
-      --ink: #10251f;
-      --green: #174f3b;
-      --lime: #c8ef62;
-      --paper: #f5f3eb;
-      --line: #d6ddd7;
-      --muted: #61706b;
-      --warning: #a65c11;
-      --danger: #a23b32;
-    }
-    * { box-sizing: border-box; }
-    html { background: var(--paper); color: var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; }
-    body { margin: 0; }
-    a { color: inherit; }
-    header {
-      display: flex; align-items: center; justify-content: space-between; gap: 20px;
-      max-width: 1080px; margin: auto; padding: 24px 28px;
-    }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; }
-    .brand img { width: 36px; height: 36px; }
-    .back { font-size: 14px; font-weight: 700; text-underline-offset: 4px; }
-    main { max-width: 1080px; margin: 0 auto 72px; padding: 0 28px; }
-    .demo-label {
-      display: inline-block; margin-bottom: 16px; padding: 7px 10px; border-radius: 5px;
-      background: var(--lime); color: var(--ink); font: 800 11px/1 ui-monospace, monospace; letter-spacing: .08em;
-    }
-    .cover {
-      padding: clamp(32px, 6vw, 68px); border-radius: 20px; background: var(--ink); color: white;
-    }
-    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; }
-    h1 { max-width: 760px; margin: 0; font-size: clamp(42px, 7vw, 78px); line-height: .98; letter-spacing: -.04em; }
-    .cover > p { max-width: 650px; margin: 22px 0 38px; color: #c4d0cc; font-size: 18px; line-height: 1.6; }
-    .meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .meta div { padding: 18px; border: 1px solid #365148; border-radius: 10px; }
-    .meta span { display: block; margin-bottom: 6px; color: #9cafaa; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
-    section { margin-top: 52px; }
-    .section-title { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: end; margin-bottom: 22px; }
-    .section-title span { color: var(--green); font: 700 12px/1 ui-monospace, monospace; }
-    h2 { margin: 0; font-size: clamp(30px, 5vw, 48px); line-height: 1.05; letter-spacing: -.025em; }
-    .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .summary article { min-height: 175px; padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: white; }
-    .summary strong { display: block; margin-bottom: 26px; font: 500 42px/1 Georgia, serif; }
-    .summary p { margin: 0; color: var(--muted); line-height: 1.5; }
-    .finding { display: grid; grid-template-columns: 105px 1fr; border-top: 1px solid var(--line); padding: 26px 0; }
-    .severity { height: fit-content; width: fit-content; padding: 6px 8px; border-radius: 4px; font-size: 10px; font-weight: 900; letter-spacing: .06em; }
-    .high { background: #f7ddd8; color: var(--danger); }
-    .medium { background: #f6e6ce; color: var(--warning); }
-    .low { background: #dcece4; color: var(--green); }
-    .finding h3 { margin: 0 0 8px; font-size: 26px; }
-    .finding p { max-width: 760px; margin: 0 0 14px; color: var(--muted); line-height: 1.6; }
-    .action { padding-left: 16px; border-left: 3px solid var(--lime); color: var(--ink) !important; font-size: 14px; }
-    .controls { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 12px; background: white; }
-    .controls th, .controls td { padding: 16px; border-bottom: 1px solid var(--line); text-align: left; }
-    .controls th { background: var(--ink); color: white; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
-    .controls td { font-size: 14px; }
-    .ok { color: var(--green); font-weight: 800; }
-    .attention { color: var(--warning); font-weight: 800; }
-    .next {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; overflow: hidden;
-      border: 1px solid var(--green); border-radius: 14px; background: var(--green);
-    }
-    .next article { padding: 24px; background: white; }
-    .next span { color: var(--green); font: 700 12px/1 ui-monospace, monospace; }
-    .next h3 { margin: 28px 0 8px; font-size: 22px; }
-    .next p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
-    .limits { padding: 24px 28px; border-radius: 12px; background: #e8ece8; color: var(--muted); font-size: 14px; line-height: 1.6; }
-    .cta { padding: 42px; border-radius: 18px; background: var(--green); color: white; text-align: center; }
-    .cta h2 { margin-bottom: 12px; }
-    .cta p { margin: 0 auto 24px; color: #cad7d2; }
-    .button {
-      display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 20px;
-      border-radius: 8px; background: var(--lime); color: var(--ink); font-weight: 800; text-decoration: none;
-    }
-    footer { max-width: 1080px; margin: auto; padding: 24px 28px 50px; color: var(--muted); font-size: 12px; }
-    @media (max-width: 700px) {
-      header, main, footer { padding-left: 18px; padding-right: 18px; }
-      .meta, .summary, .next { grid-template-columns: 1fr; }
-      .section-title { grid-template-columns: 1fr; }
-      .finding { grid-template-columns: 1fr; gap: 14px; }
-      .controls { display: block; overflow-x: auto; }
-      .cta { padding: 32px 20px; }
-    }
-    @media print {
-      html { background: white; }
-      header, .cta, footer { display: none; }
-      main { max-width: none; margin: 0; padding: 0; }
-      section { break-inside: avoid; }
-    }
-  </style>
+  <link rel="stylesheet" href="/informe-ejemplo.css">
 </head>
 <body>
   <header>
     <a class="brand" href="/"><img src="/logo.svg" alt="">Guardián PyME</a>
-    <a class="back" href="/">← Volver al sitio</a>
+    <a class="home-button" href="/">← Volver al inicio</a>
   </header>
   <main>
     <div class="demo-label">EJEMPLO · DATOS 100% FICTICIOS</div>

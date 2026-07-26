@@ -55,6 +55,8 @@ La medición y los seguimientos están en
 [`docs/15-automatizacion-de-ventas.md`](docs/15-automatizacion-de-ventas.md).
 Las decisiones de infraestructura y sus umbrales están en
 [`docs/16-arquitectura-y-escalado.md`](docs/16-arquitectura-y-escalado.md).
+La operación posterior al pago y el informe automático están en
+[`docs/17-operacion-semiautomatica.md`](docs/17-operacion-semiautomatica.md).
 
 ## Antes de publicar
 

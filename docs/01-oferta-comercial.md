@@ -14,11 +14,12 @@ verificar sus backups y ordenar su operación tecnológica.
 
 ## Diagnóstico Guardián
 
-**Precio de referencia:** desde ARS 90.000.
+**Precio:** ARS 90.000 finales, pago único.
 
 Incluye:
 
 - Entrevista con el responsable.
+- Sesión remota de hasta 2 horas.
 - Revisión de hasta 5 equipos o servicios críticos.
 - Estado de red, backups y accesos administrativos.
 - Inventario básico.
@@ -32,6 +33,7 @@ No incluye:
 - Recuperación avanzada de datos.
 - Pruebas de penetración.
 - Acceso a dispositivos no autorizados.
+- Visita presencial, que se cotiza aparte.
 
 ## Puesta en orden
 

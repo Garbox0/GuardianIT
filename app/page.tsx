@@ -29,11 +29,11 @@ const services = [
   {
     eyebrow: "Para empezar",
     title: "Diagnóstico Guardián",
-    price: "Desde ARS 90.000",
+    price: "ARS 90.000 · pago único",
     description:
       "Un relevamiento breve para saber qué está bien, qué puede fallar y qué conviene resolver primero.",
     features: [
-      "Visita o sesión de hasta 2 horas",
+      "Sesión remota de hasta 2 horas",
       "Revisión de red, equipos y backups",
       "Diagnóstico automatizado de equipos Windows",
       "5 prioridades explicadas sin tecnicismos",
@@ -104,6 +104,11 @@ const steps = [
 ];
 
 const faqs = [
+  {
+    question: "¿Los ARS 90.000 son por mes?",
+    answer:
+      "No. Es un único pago por el Diagnóstico Guardián remoto de hasta cinco equipos. El abono mensual es otro servicio opcional y sólo se ofrece si después necesitás seguimiento continuo."
+  },
   {
     question: "¿Puedo empezar sin una reunión de venta?",
     answer:
@@ -382,8 +387,8 @@ export default function Home() {
             ))}
           </div>
           <p className="price-note">
-            Valores orientativos a julio de 2026. El precio final se confirma
-            por escrito según zona, cantidad de equipos y alcance.
+            Diagnóstico remoto: ARS 90.000 finales por hasta cinco equipos.
+            Visitas, alcances mayores y otros servicios se cotizan aparte.
           </p>
         </section>
 

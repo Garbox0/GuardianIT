@@ -13,6 +13,8 @@ services:
       - /tmp:rw,noexec,nosuid,size=16m
     security_opt:
       - no-new-privileges:true
+    environment:
+      GATUS_NTFY_TOPIC: ${GATUS_NTFY_TOPIC:-guardian-alerts-not-configured}
 
 volumes:
   gatus-data:

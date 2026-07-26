@@ -1,0 +1,13 @@
+[Unit]
+Description=Send Guardian PyME heartbeat every three minutes
+
+[Timer]
+OnBootSec=2m
+OnUnitActiveSec=3m
+RandomizedDelaySec=15s
+Persistent=true
+Unit=guardian-heartbeat.service
+
+[Install]
+WantedBy=timers.target
+

@@ -10,8 +10,9 @@
 - Persistencia: volumen Docker `guardian-pyme_gatus-data`.
 - Chequeos activos: conectividad HTTPS, motor local, contenido del sitio
   comercial, vencimiento del dominio y certificado.
-- Alertas: todavía sin proveedor; el panel conserva historial pero no debe
-  venderse como aviso proactivo hasta configurar un canal externo.
+- Alertas internas: ntfy para falla y recuperación, con tópico secreto fuera
+  del repositorio. Envío probado con una falla controlada el 2026-07-26.
+- Pendiente: monitor externo independiente de la Raspberry.
 - Exposición: solamente `100.80.237.96:8080`; no escucha en la IP LAN.
 
 ## Sitio comercial

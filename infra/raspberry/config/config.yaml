@@ -7,6 +7,16 @@ storage:
   maximum-number-of-results: 500
   maximum-number-of-events: 100
 
+alerting:
+  ntfy:
+    topic: "${GATUS_NTFY_TOPIC}"
+    priority: 4
+    click: "https://aerosftp.com"
+    default-alert:
+      failure-threshold: 3
+      success-threshold: 2
+      send-on-resolved: true
+
 ui:
   title: "Guardián PyME | Estado"
   header: "Guardián PyME"
@@ -25,6 +35,9 @@ endpoints:
     conditions:
       - "[STATUS] == 200"
       - "[RESPONSE_TIME] < 3000"
+    alerts:
+      - type: ntfy
+        description: "La Raspberry perdió conectividad HTTPS."
 
   - name: "Motor de monitoreo"
     group: "Infraestructura"
@@ -37,6 +50,9 @@ endpoints:
       hide-url: true
       hide-hostname: true
       hide-port: true
+    alerts:
+      - type: ntfy
+        description: "El motor local de monitoreo no responde."
 
   - name: "Sitio comercial público"
     group: "Guardián PyME"
@@ -47,6 +63,9 @@ endpoints:
       - "[RESPONSE_TIME] < 5000"
       - "[CERTIFICATE_EXPIRATION] > 168h"
       - "[BODY] == pat(*Guardián PyME*)"
+    alerts:
+      - type: ntfy
+        description: "El sitio comercial no responde o no entrega el contenido esperado."
 
   - name: "Dominio y certificado"
     group: "Guardián PyME"
@@ -56,3 +75,9 @@ endpoints:
       - "[STATUS] == 200"
       - "[CERTIFICATE_EXPIRATION] > 336h"
       - "[DOMAIN_EXPIRATION] > 720h"
+    alerts:
+      - type: ntfy
+        failure-threshold: 1
+        success-threshold: 1
+        minimum-reminder-interval: 24h
+        description: "El dominio o certificado requiere atención."

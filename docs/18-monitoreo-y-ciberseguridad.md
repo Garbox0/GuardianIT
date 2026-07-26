@@ -71,21 +71,37 @@ La base técnica disponible es:
 No usar las palabras “SOC”, “pentest”, “monitoreo 24 × 7” o “protección total”
 en una propuesta.
 
-## Brecha actual antes de vender monitoreo proactivo
+## Alertas internas
 
-Gatus conserva historial, pero todavía no tiene un proveedor de alertas. Por lo
-tanto, el abono no debe prometer aviso proactivo hasta completar:
+Gatus envía avisos de falla y recuperación mediante ntfy. El tópico se guarda
+en `/home/pi/guardian-pyme/.env` únicamente en la Raspberry y no se versiona. La
+configuración predeterminada espera tres fallas y dos recuperaciones
+consecutivas para evitar avisos por fluctuaciones breves.
 
-1. alerta de falla y recuperación a un canal controlado;
-2. monitor externo independiente de la Raspberry;
-3. prueba documentada apagando temporalmente un endpoint de laboratorio;
-4. procedimiento de escalamiento y horarios;
-5. separación de información entre clientes.
+Para recibirlos, instalar la aplicación ntfy o abrir `https://ntfy.sh/app` y
+suscribirse al tópico privado entregado durante la instalación.
 
-El primer canal puede ser correo, Telegram, Slack o un webhook, pero sus
-credenciales deben quedar fuera del repositorio. El monitor externo es
-obligatorio porque una Raspberry no puede avisar que ella misma perdió energía
-o conectividad.
+El 26 de julio de 2026 se realizó una falla controlada en un contenedor
+descartable. Gatus detectó el fallo y confirmó el envío por ntfy sin interrumpir
+el sitio productivo.
+
+## Brecha restante antes de vender monitoreo proactivo
+
+Todavía falta un monitor externo independiente de la Raspberry. Es obligatorio
+porque el nodo no puede avisar mediante ntfy si perdió energía o conexión.
+
+Configuración prevista en UptimeRobot:
+
+1. monitor de palabra clave para `https://aerosftp.com`;
+2. palabra esperada: `Guardián PyME`;
+3. intervalo de cinco minutos;
+4. alertas de caída y recuperación al correo del operador;
+5. heartbeat separado para la Raspberry cuando el plan y la operación lo
+   justifiquen;
+6. prueba documentada de falla y recuperación.
+
+No prometer monitoreo proactivo hasta que esta prueba externa esté completa.
+El procedimiento operativo está en `docs/19-runbook-alertas.md`.
 
 ## Mejoras futuras con condición de entrada
 

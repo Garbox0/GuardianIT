@@ -16,6 +16,10 @@ docker compose ps
 docker compose logs --tail=100
 ```
 
+Las alertas internas usan ntfy. El tópico privado se define en `.env`; nunca
+debe copiarse al repositorio. La prueba de extremo a extremo y el procedimiento
+de respuesta están documentados en `docs/19-runbook-alertas.md`.
+
 El arranque se coordina con `tailscale-online.target` mediante
 `guardian-pyme.service`. Así Docker no intenta publicar el puerto antes de que
 exista la IP de Tailscale.
@@ -88,3 +92,9 @@ cloudflared tunnel ingress validate
 
 El servicio web usa `/home/pi/guardian-site/public` y
 `/home/pi/guardian-site/server.mjs`.
+
+## Monitor externo
+
+Los archivos `guardian-heartbeat.service` y `guardian-heartbeat.timer` quedan
+preparados para enviar una señal cada tres minutos a un monitor externo. No
+deben activarse hasta guardar una `GUARDIAN_HEARTBEAT_URL` válida en `.env`.

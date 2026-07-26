@@ -1,8 +1,8 @@
 # Nodo Guardián PyME
 
-Panel privado y liviano para demostrar monitoreo de disponibilidad. Corre Gatus
-en Docker, conserva el historial en SQLite y escucha únicamente en la IP privada
-de la Raspberry dentro de la red Tailscale.
+Panel maestro privado para operar el monitoreo de varias empresas. Gatus corre
+en Docker, conserva el historial en SQLite y funciona como motor; una vista
+propia separa los clientes y resume sus servicios sin exponer el panel técnico.
 
 ## Operación
 
@@ -31,20 +31,22 @@ tailnet:
 https://guardian-monitor.tailfe3e24.ts.net/
 ```
 
-Tailscale Serve termina TLS y reenvía a Gatus en `127.0.0.1:8080`. El puerto
-directo no escucha en la IP de Tailscale. No se abre ningún puerto en el router
-ni se usa Tailscale Funnel.
+Tailscale Serve termina TLS y reenvía al tablero en `127.0.0.1:8091`. El tablero
+consulta Gatus en `127.0.0.1:8080`. Ninguno de esos puertos escucha en la IP de
+Tailscale. No se abre ningún puerto en el router ni se usa Tailscale Funnel.
 
 ## Verificaciones
 
 ```bash
 curl -fsS http://127.0.0.1:8080/api/v1/endpoints/statuses
+curl -fsS http://127.0.0.1:8091/api/statuses
 curl -fsS https://guardian-monitor.tailfe3e24.ts.net/
 docker inspect guardian-gatus --format '{{.State.Status}}'
 docker stats --no-stream guardian-gatus
 findmnt /mnt/hdd
 sudo smartctl -d sat -H /dev/sda
 systemctl status smartmontools
+systemctl status guardian-monitor-dashboard
 ```
 
 ## Agregar un cliente

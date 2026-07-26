@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0b1814">
+  <title>Guardián PyME · Operaciones</title>
+  <link rel="stylesheet" href="/dashboard.css">
+  <script type="module" src="/dashboard.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">✓</span>
+      <span>Guardián <strong>PyME</strong></span>
+    </div>
+    <div class="private"><span></span> RED PRIVADA</div>
+    <button id="refresh" class="refresh" type="button">Actualizar</button>
+  </header>
+
+  <main id="contenido">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">CENTRO DE OPERACIONES</p>
+        <h1>Todos los clientes.<br><em>Una lectura clara.</em></h1>
+        <p class="lede">Disponibilidad, fallas activas y última comprobación de cada servicio acordado.</p>
+      </div>
+      <div id="overall" class="overall loading" aria-live="polite">
+        <span class="status-dot"></span>
+        <div>
+          <small>ESTADO GENERAL</small>
+          <strong>Consultando…</strong>
+          <p>Conectando con el motor de monitoreo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Resumen operativo">
+      <article><span>Clientes monitoreados</span><strong id="client-count">—</strong><small>espacios separados</small></article>
+      <article><span>Servicios controlados</span><strong id="service-count">—</strong><small>comprobaciones automáticas</small></article>
+      <article><span>Atenciones activas</span><strong id="failure-count">—</strong><small>requieren validación</small></article>
+      <article><span>Última comprobación</span><strong id="last-check">—</strong><small id="refresh-note">actualización automática</small></article>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">CARTERA</p>
+          <h2>Un espacio por cliente.</h2>
+        </div>
+        <p>Elegí una empresa para revisar sus servicios.</p>
+      </div>
+      <div id="clients" class="client-grid" aria-live="polite">
+        <div class="skeleton"></div><div class="skeleton"></div>
+      </div>
+    </section>
+
+    <section id="detail-section" class="workspace" hidden>
+      <div class="section-title compact">
+        <div>
+          <p class="eyebrow">DETALLE DEL CLIENTE</p>
+          <h2 id="detail-title">—</h2>
+        </div>
+        <p id="detail-summary">—</p>
+      </div>
+      <div id="services" class="service-grid"></div>
+    </section>
+
+    <section class="lower-grid">
+      <article class="platform">
+        <div class="section-title compact">
+          <div>
+            <p class="eyebrow">PLATAFORMA</p>
+            <h2>Nuestra infraestructura.</h2>
+          </div>
+        </div>
+        <div id="platform-services" class="platform-list"></div>
+      </article>
+
+      <article class="activity">
+        <div class="section-title compact">
+          <div>
+            <p class="eyebrow">ACTIVIDAD</p>
+            <h2>Señales recientes.</h2>
+          </div>
+        </div>
+        <ol id="activity" class="timeline"></ol>
+      </article>
+    </section>
+
+    <section id="error" class="error" hidden role="alert">
+      <strong>No pudimos leer el monitoreo.</strong>
+      <span>El panel volverá a intentarlo automáticamente. Revisá el motor Gatus si persiste.</span>
+    </section>
+  </main>
+
+  <footer>
+    <span>Guardián PyME · Panel maestro interno</span>
+    <span>Los clientes reciben únicamente su informe o portal filtrado.</span>
+  </footer>
+</body>
+</html>

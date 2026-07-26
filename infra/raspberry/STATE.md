@@ -6,6 +6,8 @@
   (`100.80.237.96`).
 - Panel: `https://guardian-monitor.tailfe3e24.ts.net`.
 - Contenedor: `guardian-gatus`.
+- Tablero maestro: servicio `guardian-monitor-dashboard`, con grupos de cliente,
+  resumen operativo y datos obtenidos desde Gatus.
 - Imagen ARM64:
   `ghcr.io/twin/gatus@sha256:c5f210d095fa78e6efaa20ffeb14803f2ba4f10615e16a6d12087697149617f0`.
 - Persistencia: volumen Docker `guardian-pyme_gatus-data`.
@@ -14,9 +16,10 @@
 - Alertas internas: ntfy para falla y recuperación, con tópico secreto fuera
   del repositorio. Envío probado con una falla controlada el 2026-07-26.
 - Pendiente: monitor externo independiente de la Raspberry.
-- Exposición: Tailscale Serve por HTTPS y sólo para el tailnet. Gatus escucha
-  en `127.0.0.1:8080`; el puerto directo no está disponible en la IP LAN ni en
-  la IP de Tailscale. Funnel no está habilitado.
+- Exposición: Tailscale Serve por HTTPS y sólo para el tailnet. El tablero
+  escucha en `127.0.0.1:8091` y Gatus en `127.0.0.1:8080`; los puertos directos
+  no están disponibles en la IP LAN ni en la IP de Tailscale. Funnel no está
+  habilitado.
 
 ## Sitio comercial
 

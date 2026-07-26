@@ -1,0 +1,2 @@
+# Keep the package unit quiet and use smartd's standard 30-minute interval.
+smartd_opts="--interval=1800"

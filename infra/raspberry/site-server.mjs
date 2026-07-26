@@ -41,6 +41,16 @@ export function httpsLocation({ headers, url }) {
     : null;
 }
 
+export function cacheControl(pathname) {
+  if (pathname.startsWith("/_next/static/")) {
+    return "public, max-age=31536000, immutable";
+  }
+  if (/\.(?:css|ico|js|png|svg|webp)$/.test(pathname)) {
+    return "public, max-age=3600, stale-while-revalidate=86400";
+  }
+  return "no-cache";
+}
+
 export function startServer({
   root = process.env.SITE_ROOT || fileURLToPath(new URL("./public", import.meta.url)),
   host = process.env.HOST || "127.0.0.1",
@@ -79,11 +89,8 @@ export function startServer({
     try {
       const info = await stat(file);
       if (!info.isFile()) throw new Error("Not a file");
-      const immutable = pathname.startsWith("/_next/static/");
       response.writeHead(200, {
-        "Cache-Control": immutable
-          ? "public, max-age=31536000, immutable"
-          : "no-cache",
+        "Cache-Control": cacheControl(pathname),
         "Content-Length": info.size,
         "Content-Type": MIME[extname(file)] || "application/octet-stream"
       });

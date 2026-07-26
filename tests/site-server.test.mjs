@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { resolve } from "node:path";
 import {
+  cacheControl,
   httpsLocation,
   resolveRequestPath
 } from "../infra/raspberry/site-server.mjs";
@@ -32,5 +33,18 @@ test("site server redirects only known public hosts to HTTPS", () => {
       url: "/"
     }),
     null
+  );
+});
+
+test("site server caches assets without making HTML stale", () => {
+  assert.equal(cacheControl("/"), "no-cache");
+  assert.equal(cacheControl("/centro-guardian.html"), "no-cache");
+  assert.equal(
+    cacheControl("/centro-guardian.css"),
+    "public, max-age=3600, stale-while-revalidate=86400"
+  );
+  assert.equal(
+    cacheControl("/_next/static/chunks/app-abc.js"),
+    "public, max-age=31536000, immutable"
   );
 });

@@ -41,11 +41,11 @@ export default function LeadForm({ whatsappNumber }: Props) {
     <form className="lead-form" onSubmit={handleSubmit}>
       <label>
         Tu nombre
-        <input name="name" autoComplete="name" required />
+        <input name="name" autoComplete="name" maxLength={80} required />
       </label>
       <label>
         Empresa o actividad
-        <input name="business" autoComplete="organization" required />
+        <input name="business" autoComplete="organization" maxLength={100} required />
       </label>
       <label>
         Cantidad aproximada de equipos
@@ -62,6 +62,7 @@ export default function LeadForm({ whatsappNumber }: Props) {
         <textarea
           name="problem"
           rows={4}
+          maxLength={600}
           placeholder="Por ejemplo: el backup figura hecho, pero nunca recuperamos un archivo..."
           required
         />

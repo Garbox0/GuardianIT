@@ -31,14 +31,14 @@ const services = [
     title: "Diagnóstico Guardián",
     price: "ARS 90.000 · pago único",
     description:
-      "Hasta dos horas para revisar cinco equipos o servicios y salir con un orden claro de qué atender primero.",
+      "Revisión remota de hasta dos horas para cinco equipos o servicios, sin realizar cambios.",
     features: [
       "Nos conectamos con vos presente",
       "Revisamos hasta 5 equipos o servicios",
       "Chequeamos backup, antivirus y eventos",
       "Revisamos red, accesos y dominio",
       "Marcamos hasta 5 prioridades",
-      "Te llevás un informe que se entiende"
+      "Entregamos hallazgo, evidencia y próximo paso"
     ],
     cta: "Pedir diagnóstico"
   },
@@ -62,13 +62,13 @@ const services = [
     title: "Abono Guardián",
     price: "Desde ARS 140.000 / mes",
     description:
-      "Para no enterarte de una caída por el mensaje de un cliente o cuando ya nadie puede trabajar.",
+      "Monitoreo de los controles acordados, registro de incidentes y tres horas mensuales de soporte remoto.",
     features: [
       "Hasta 5 computadoras y 5 controles",
       "3 horas mensuales de soporte remoto",
       "Revisión del backup acordado",
       "Avisos por web, dominio, certificado o IP acordada",
-      "Registro simple de lo que pasó",
+      "Historial con fecha, alerta y acción",
       "Acciones autorizadas cuando correspondan"
     ],
     cta: "Evaluar mi empresa"
@@ -77,32 +77,32 @@ const services = [
 
 const deliverables = [
   {
-    title: "Un informe que se puede leer",
-    body: "En vez de volcarte veinte controles técnicos, explicamos qué encontramos, por qué importa y qué haríamos primero.",
-    proof: "Resumen claro + evidencia técnica"
+    title: "Un informe con cinco prioridades",
+    body: "Cada punto indica qué comprobamos, cómo puede afectar el trabajo y qué acción proponemos.",
+    proof: "Hallazgo + impacto + evidencia + acción"
   },
   {
-    title: "Un aviso cuando algo deja de responder",
-    body: "Controlamos la web y los servicios acordados. Antes de alarmarte, comprobamos que la falla sea real.",
-    proof: "Aviso + horario + registro"
+    title: "Una alerta con hora y control afectado",
+    body: "Esperamos tres fallas consecutivas, validamos el resultado y recién entonces avisamos.",
+    proof: "Detección + validación + aviso"
   },
   {
-    title: "Una prueba de que el backup abre",
-    body: "Anotamos dónde está la copia y qué antigüedad tiene. Si el alcance lo permite, recuperamos una muestra sin tocar los originales.",
-    proof: "Fecha + destino + prueba acordada"
+    title: "Una restauración de muestra",
+    body: "Registramos destino y antigüedad. Con autorización, recuperamos una carpeta aislada sin tocar los originales.",
+    proof: "Fecha + destino + resultado"
   },
   {
-    title: "Un resumen de lo que pasó en el mes",
-    body: "Te contamos qué se cayó, qué se hizo y qué conviene mirar después. Sin mandarte capturas de un tablero técnico.",
-    proof: "Informe para guardar y compartir"
+    title: "Un historial mensual de incidentes",
+    body: "El registro muestra qué falló, cuándo avisamos, cómo se recuperó y qué tarea quedó pendiente.",
+    proof: "Horario + acción + estado final"
   }
 ];
 
 const steps = [
-  ["Nos contás qué pasa", "No hace falta que sepas el nombre técnico. Alcanza con explicar qué se corta, qué demora o qué genera dudas."],
-  ["Lo miramos juntos", "La primera revisión es remota, con vos presente y sin cambiar configuraciones por nuestra cuenta."],
-  ["Te damos un orden", "Recibís pocos puntos, cada uno con una explicación y un próximo paso posible."],
-  ["Vos decidís", "Podés cerrar ahí, pedir un presupuesto para corregirlo o evaluar el acompañamiento mensual."]
+  ["Definimos el alcance", "Anotamos los cinco equipos o servicios, el problema y qué no puede dejar de funcionar."],
+  ["Revisamos sin cambiar", "La sesión dura hasta dos horas, es remota y se realiza con una persona responsable presente."],
+  ["Entregamos el informe", "Recibís hasta cinco prioridades con evidencia, impacto y una acción propuesta."],
+  ["Autorizás por separado", "Una corrección o el monitoreo mensual tienen alcance, precio y aprobación propios."]
 ];
 
 const faqs = [
@@ -286,8 +286,7 @@ export default function Home() {
               </div>
             </div>
             <p className="signal-note">
-              Te llevás esto: qué pasa, por qué importa y cuál sería el
-              siguiente paso.
+              El informe entrega hallazgo, impacto, evidencia y próxima acción.
             </p>
           </div>
         </section>
@@ -295,7 +294,7 @@ export default function Home() {
         <section className="problem-section section">
           <div className="section-heading">
             <p className="eyebrow">COSAS QUE PASAN EN UNA OFICINA</p>
-            <h2>Problemas chicos, hasta que frenan a todos.</h2>
+            <h2>Cuatro fallas que revisamos seguido.</h2>
           </div>
           <div className="problem-grid">
             {problems.map((problem) => (
@@ -311,10 +310,9 @@ export default function Home() {
         <section className="outcomes-section section" id="entregables">
           <div className="section-heading">
             <p className="eyebrow">QUÉ TE LLEVÁS</p>
-            <h2>Algo más útil que una lista de luces verdes y rojas.</h2>
+            <h2>Hallazgo, evidencia y próximo paso.</h2>
             <p>
-              Cada revisión termina en una explicación que podés guardar,
-              compartir y usar para decidir.
+              El resultado queda documentado para decidir qué corregir primero.
             </p>
           </div>
           <div className="outcome-grid">
@@ -348,7 +346,7 @@ export default function Home() {
         <section className="fit-section section" id="respuesta">
           <div className="fit-card fit-yes">
             <p className="eyebrow">ANTE UNA ALERTA</p>
-            <h2>Detectamos, validamos y dejamos registro.</h2>
+            <h2>Qué hacemos cuando un control falla.</h2>
             <ul>
               <li>Confirmamos si la falla es real</li>
               <li>Te avisamos por el canal acordado</li>
@@ -358,7 +356,7 @@ export default function Home() {
           </div>
           <div className="fit-card">
             <p className="eyebrow">SÓLO CON TU AUTORIZACIÓN</p>
-            <h2>No hacemos cambios a ciegas.</h2>
+            <h2>Qué no modificamos sin permiso.</h2>
             <ul>
               <li>Reiniciar servicios o equipos de tu empresa</li>
               <li>Cambiar usuarios, permisos, firewall o DNS</li>
@@ -375,7 +373,7 @@ export default function Home() {
         <section className="services-section section" id="servicios">
           <div className="section-heading centered">
             <p className="eyebrow">SIN CONTRATOS DE ENTRADA</p>
-            <h2>Podés empezar por una sola revisión.</h2>
+            <h2>Diagnóstico único, corrección aparte y abono opcional.</h2>
             <p>
               Si después querés corregir algo o tener seguimiento mensual, lo
               vemos por separado.
@@ -452,7 +450,7 @@ export default function Home() {
         <section className="process-section section" id="proceso">
           <div className="section-heading">
             <p className="eyebrow">CÓMO ES LA REVISIÓN</p>
-            <h2>Sin una reunión eterna ni acceso a escondidas.</h2>
+            <h2>Dos horas, sólo lectura y hasta cinco equipos.</h2>
           </div>
           <ol className="process-list">
             {steps.map(([title, description], index) => (
@@ -491,7 +489,7 @@ export default function Home() {
         <section className="faq-section section" id="preguntas">
           <div className="section-heading">
             <p className="eyebrow">PREGUNTAS FRECUENTES</p>
-            <h2>Todo claro antes de empezar.</h2>
+            <h2>Precio, alcance, permisos y soporte.</h2>
           </div>
           <div className="faq-list">
             {faqs.map((faq) => (
@@ -534,7 +532,7 @@ export default function Home() {
           <span>Guardián <strong>PyME</strong></span>
         </div>
         <p>
-          Una mano técnica para oficinas que no tienen un área de sistemas.
+          Diagnóstico y monitoreo para oficinas sin un área de sistemas.
         </p>
         <p className="footer-note">
           El diagnóstico es limitado al alcance autorizado y no garantiza la

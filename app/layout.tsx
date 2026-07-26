@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Guardián PyME, tecnología que no frena tu negocio"
+        alt: "Guardián PyME, diagnóstico y monitoreo para oficinas"
       }
     ]
   },

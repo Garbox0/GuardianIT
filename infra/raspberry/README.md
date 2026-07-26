@@ -40,6 +40,9 @@ habilitada en el tailnet durante la instalación.
 curl -fsS http://100.80.237.96:8080/api/v1/endpoints/statuses
 docker inspect guardian-gatus --format '{{.State.Status}}'
 docker stats --no-stream guardian-gatus
+findmnt /mnt/hdd
+sudo smartctl -d sat -H /dev/sda
+systemctl status smartmontools
 ```
 
 ## Agregar un cliente
@@ -89,9 +92,15 @@ OpenHealth se retiró sin borrar sus volúmenes. El respaldo final está en:
 /home/pi/openhealth-bridge/retired-2026-07-25/
 ```
 
-El disco USB documentado como `/mnt/hdd` no estaba conectado durante el retiro.
-Ese directorio pertenece actualmente a la microSD y no debe tratarse como copia
-externa.
+El disco USB está montado en `/mnt/hdd` como NTFS de solo lectura. La opción
+`nofail` evita que su ausencia bloquee el arranque. No debe ser la única copia
+de ningún cliente.
+
+El bridge USB requiere modo SAT explícito para leer SMART. `smartd.conf` y
+`smartmontools.default` corrigen el fallo de autodetección y fijan el intervalo
+de revisión en 30 minutos.
+El disco informa sectores reasignados aunque el estado general siga aprobado;
+por eso se conserva en solo lectura y no se usa como almacenamiento principal.
 
 ## Sitio público
 

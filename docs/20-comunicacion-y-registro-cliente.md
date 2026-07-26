@@ -10,6 +10,11 @@ Recibe tres evidencias:
 3. informe mensual individual con estado y disponibilidad de los últimos
    treinta días.
 
+También se le informa antes de contratar que Guardián PyME autorrecupera sus
+propios componentes, pero sólo interviene sistemas del cliente mediante
+acciones preautorizadas o una aprobación puntual. Detectar una falla no autoriza
+por sí solo a modificar equipos o datos.
+
 ## Avisos
 
 Durante el alta se acuerdan un contacto, canal, horario y tiempo objetivo de

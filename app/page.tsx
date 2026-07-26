@@ -67,7 +67,8 @@ const services = [
       "3 horas de soporte remoto",
       "Control de backups y restauración acordada",
       "Monitoreo web, dominio y certificado",
-      "Panel privado e informe mensual"
+      "Avisos, registro e informe mensual",
+      "Acciones preautorizadas cuando correspondan"
     ],
     cta: "Evaluar mi empresa"
   }
@@ -81,8 +82,8 @@ const deliverables = [
   },
   {
     title: "Monitoreo continuo",
-    body: "Controlamos los servicios acordados y conservamos historial para distinguir una falla real de una impresión.",
-    proof: "Panel privado + disponibilidad"
+    body: "Controlamos los servicios acordados, validamos las alertas y dejamos registro de cada incidente informado.",
+    proof: "Aviso + historial + disponibilidad"
   },
   {
     title: "Backup verificable",
@@ -133,6 +134,11 @@ const faqs = [
     question: "¿El soporte es ilimitado?",
     answer:
       "No. Cada propuesta indica horas, horarios, tiempos de respuesta y tareas incluidas para evitar sorpresas."
+  },
+  {
+    question: "¿Qué hacen si el monitoreo detecta una falla?",
+    answer:
+      "Primero la validamos, te avisamos y dejamos registro. Nuestros propios componentes pueden recuperarse automáticamente. En tus sistemas sólo ejecutamos acciones previamente autorizadas; cualquier otro cambio requiere tu aprobación y puede consumir horas del abono o cotizarse por separado."
   },
   {
     question: "¿Pueden acceder sin autorización?",
@@ -328,6 +334,33 @@ export default function Home() {
             <a className="button button-outline" href="/informe-ejemplo.html">
               Ver informe de ejemplo <span aria-hidden="true">→</span>
             </a>
+          </div>
+        </section>
+
+        <section className="fit-section section" id="respuesta">
+          <div className="fit-card fit-yes">
+            <p className="eyebrow">ANTE UNA ALERTA</p>
+            <h2>Detectamos, validamos y dejamos registro.</h2>
+            <ul>
+              <li>Confirmamos si la falla es real</li>
+              <li>Te avisamos por el canal acordado</li>
+              <li>Nuestra infraestructura intenta recuperarse sola</li>
+              <li>Documentamos causa, acción y resultado</li>
+            </ul>
+          </div>
+          <div className="fit-card">
+            <p className="eyebrow">SÓLO CON TU AUTORIZACIÓN</p>
+            <h2>No hacemos cambios a ciegas.</h2>
+            <ul>
+              <li>Reiniciar servicios o equipos de tu empresa</li>
+              <li>Cambiar usuarios, permisos, firewall o DNS</li>
+              <li>Restaurar, mover o eliminar información</li>
+              <li>Instalar software o aplicar correcciones</li>
+            </ul>
+            <p>
+              Las acciones preautorizadas se ejecutan con límites y
+              verificación. Lo demás se confirma y cotiza antes de actuar.
+            </p>
           </div>
         </section>
 

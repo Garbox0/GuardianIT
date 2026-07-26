@@ -55,3 +55,8 @@ entregable, precio, plazo y exclusiones.
 
 Visitas, urgencias, repuestos, licencias, proyectos y horas adicionales se
 presupuestan por separado.
+
+Ante una alerta, Guardián PyME valida, avisa y registra. La infraestructura
+propia puede autorrecuperarse. En sistemas del cliente sólo se ejecutan acciones
+preautorizadas; cualquier otra corrección requiere aprobación y puede consumir
+horas incluidas o cotizarse por separado.

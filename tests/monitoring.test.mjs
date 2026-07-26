@@ -75,6 +75,7 @@ test("genera un HTML portable sin inyectar datos del cliente", () => {
 
   assert.match(html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
+  assert.match(html, /sólo ejecuta acciones previamente autorizadas/);
 });
 
 test("genera el mensaje exacto según el estado del cliente", () => {
@@ -113,6 +114,7 @@ test("genera el mensaje exacto según el estado del cliente", () => {
 
   assert.match(failed, /requieren atención/);
   assert.match(failed, /Web: El control no respondió correctamente/);
+  assert.match(failed, /pediremos aprobación antes de ejecutarlo/);
   assert.match(healthy, /todos los servicios monitoreados están operativos/);
   assert.match(healthy, /No hay incidentes activos ni fallas recientes/);
   assert.match(recovered, /se observaron estos desvíos/);

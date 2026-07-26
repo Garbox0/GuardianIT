@@ -58,20 +58,19 @@ export default function LeadForm({ whatsappNumber }: Props) {
         </select>
       </label>
       <label>
-        ¿Qué problema querés resolver?
+        ¿Qué está pasando?
         <textarea
           name="problem"
           rows={4}
-          placeholder="Por ejemplo: no sabemos si el backup funciona..."
+          placeholder="Por ejemplo: el backup figura hecho, pero nunca recuperamos un archivo..."
           required
         />
       </label>
       <button className="button form-button" type="submit">
-        Continuar por WhatsApp
+        Preparar mensaje de WhatsApp
       </button>
       <p className="privacy-note">
-        No guardamos estos datos en el sitio. Se usan solamente para preparar
-        tu mensaje.
+        Al enviar se abre WhatsApp. Esta página no guarda lo que escribís.
       </p>
       <p className="form-status" aria-live="polite">{status}</p>
     </form>

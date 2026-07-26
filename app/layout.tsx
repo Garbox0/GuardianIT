@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://aerosftp.com"),
   title: {
-    default: "Guardián PyME | Soporte informático para empresas",
+    default: "Guardián PyME | Soporte IT para oficinas",
     template: "%s | Guardián PyME"
   },
   description:
-    "Diagnóstico y soporte informático para PyMEs de Zona Norte y CABA. Revisamos equipos, backups, red y accesos con alcance y precio claros.",
+    "Revisión remota de equipos, Wi-Fi, backups y accesos para oficinas de Zona Norte y CABA. Hasta cinco equipos por ARS 90.000, pago único.",
   alternates: {
     canonical: "/"
   },
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     icon: "/icon.svg"
   },
   openGraph: {
-    title: "Guardián PyME | Soporte informático para empresas",
+    title: "Guardián PyME | Soporte IT para oficinas",
     description:
-      "Diagnóstico y soporte informático para PyMEs de Zona Norte y CABA.",
+      "Revisamos equipos, Wi-Fi, backups y accesos. Hasta cinco equipos, pago único y sin abono obligatorio.",
     type: "website",
     locale: "es_AR",
     siteName: "Guardián PyME",
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Guardián PyME | Soporte informático para empresas",
+    title: "Guardián PyME | Soporte IT para oficinas",
     description:
-      "Diagnóstico y soporte informático para PyMEs de Zona Norte y CABA.",
+      "Revisión remota de equipos, Wi-Fi, backups y accesos en Zona Norte y CABA.",
     images: ["/og-image.png"]
   },
   robots: {

@@ -7,7 +7,7 @@ const paymentLink =
   process.env.NEXT_PUBLIC_PAYMENT_LINK?.trim() || "https://mpago.la/2MLSJyJ";
 const whatsappUrl = buildWhatsAppUrl(
   whatsappNumber,
-  "Hola, vi Guardián PyME y quiero consultar por el Diagnóstico Guardián."
+  "Hola, vi la página de Guardián PyME. Quiero consultar por la revisión de hasta cinco equipos."
 );
 const paymentConfirmationUrl = buildWhatsAppUrl(
   whatsappNumber,
@@ -18,7 +18,7 @@ export const site = {
   name: "Guardián PyME",
   url: "https://aerosftp.com",
   description:
-    "Soporte informático, continuidad y automatización práctica para PyMEs.",
+    "Revisión y soporte informático para oficinas sin un área de sistemas.",
   area:
     process.env.NEXT_PUBLIC_SERVICE_AREA?.trim() ||
     "Zona Norte y CABA · atención remota en Argentina",

@@ -5,23 +5,23 @@ import { site } from "@/lib/site";
 const problems = [
   {
     number: "01",
-    title: "El backup parece funcionar",
-    body: "Hasta que necesitás recuperar algo. Revisamos que exista, esté actualizado y pueda verificarse."
+    title: "El backup dice “completado”, pero nadie intentó abrirlo",
+    body: "Miramos la fecha, el destino y si realmente se puede recuperar un archivo. Una copia que nunca se probó todavía es una duda."
   },
   {
     number: "02",
-    title: "Todo depende de una sola persona",
-    body: "Documentamos equipos, accesos y servicios críticos para que el negocio no quede a oscuras."
+    title: "La clave del router la tiene el técnico que vino hace tres años",
+    body: "Dejamos anotado qué equipos hay, quién administra cada cosa y qué servicio no puede faltar."
   },
   {
     number: "03",
-    title: "La tecnología interrumpe el trabajo",
-    body: "Atendemos problemas de red, Windows, impresoras y cuentas con un alcance claro."
+    title: "El Wi-Fi se corta justo cuando hay que facturar",
+    body: "Revisamos red, Windows, impresoras y cuentas para encontrar el problema real, no sumar otro parche."
   },
   {
     number: "04",
-    title: "Se repiten tareas manuales",
-    body: "Automatizamos pasos concretos cuando el ahorro de tiempo justifica la inversión."
+    title: "Cada viernes alguien arma el mismo Excel a mano",
+    body: "Si una tarea se repite, vemos si conviene resolverla con las herramientas que ya usan."
   }
 ];
 
@@ -31,13 +31,13 @@ const services = [
     title: "Diagnóstico Guardián",
     price: "ARS 90.000 · pago único",
     description:
-      "Un relevamiento breve para saber qué está bien, qué puede fallar y qué conviene resolver primero.",
+      "Hasta dos horas para revisar cinco equipos o servicios y salir con un orden claro de qué atender primero.",
     features: [
-      "Sesión remota de hasta 2 horas",
-      "Revisión de red, equipos y backups",
-      "Seguridad Windows y postura del dominio",
-      "5 prioridades explicadas sin tecnicismos",
-      "Informe HTML y evidencia técnica"
+      "Nos conectamos con vos presente",
+      "Revisamos hasta 5 equipos o servicios",
+      "Chequeamos backup, Windows, red y accesos",
+      "Marcamos hasta 5 prioridades",
+      "Te llevás un informe que se entiende"
     ],
     cta: "Pedir diagnóstico"
   },
@@ -46,13 +46,13 @@ const services = [
     title: "Puesta en orden",
     price: "Presupuesto cerrado",
     description:
-      "Corregimos los problemas detectados sin obligarte a contratar un abono.",
+      "Si encontramos algo, te decimos qué haríamos, cuánto cuesta y qué puede interrumpirse. Vos decidís.",
     features: [
-      "Backups y recuperación",
-      "Red, Wi-Fi e impresoras",
-      "Usuarios, accesos y MFA",
-      "Actualizaciones y documentación",
-      "Alcance aprobado antes de comenzar"
+      "Probamos recuperación de backups",
+      "Ordenamos red, Wi-Fi e impresoras",
+      "Separamos usuarios y accesos",
+      "Programamos actualizaciones y reinicios",
+      "No tocamos nada sin tu aprobación"
     ],
     cta: "Consultar alcance"
   },
@@ -61,14 +61,14 @@ const services = [
     title: "Abono Guardián",
     price: "Desde ARS 140.000 / mes",
     description:
-      "Seguimiento preventivo para oficinas que no cuentan con un responsable de sistemas.",
+      "Para no enterarte de una caída por el mensaje de un cliente o cuando ya nadie puede trabajar.",
     features: [
-      "Hasta 5 computadoras",
-      "3 horas de soporte remoto",
-      "Control de backups y restauración acordada",
-      "Monitoreo web, dominio y certificado",
-      "Avisos, registro e informe mensual",
-      "Acciones preautorizadas cuando correspondan"
+      "Hasta 5 computadoras y 5 controles",
+      "3 horas mensuales de soporte remoto",
+      "Revisión del backup acordado",
+      "Avisos por web, dominio o certificado",
+      "Registro simple de lo que pasó",
+      "Acciones autorizadas cuando correspondan"
     ],
     cta: "Evaluar mi empresa"
   }
@@ -76,32 +76,32 @@ const services = [
 
 const deliverables = [
   {
-    title: "Diagnóstico con evidencia",
-    body: "Revisamos Defender, firewall, actualizaciones, cifrado, UAC, accesos, RDP, SMBv1, backup y postura pública del dominio sin modificar equipos.",
-    proof: "Informe HTML + evidencia JSON"
+    title: "Un informe que se puede leer",
+    body: "En vez de volcarte veinte controles técnicos, explicamos qué encontramos, por qué importa y qué haríamos primero.",
+    proof: "Resumen claro + evidencia técnica"
   },
   {
-    title: "Monitoreo continuo",
-    body: "Controlamos los servicios acordados, validamos las alertas y dejamos registro de cada incidente informado.",
-    proof: "Aviso + historial + disponibilidad"
+    title: "Un aviso cuando algo deja de responder",
+    body: "Controlamos la web y los servicios acordados. Antes de alarmarte, comprobamos que la falla sea real.",
+    proof: "Aviso + horario + registro"
   },
   {
-    title: "Backup verificable",
-    body: "Registramos antigüedad, destino y resultado. La copia se considera confiable recién después de una restauración.",
-    proof: "Registro de prueba de recuperación"
+    title: "Una prueba de que el backup abre",
+    body: "Anotamos dónde está la copia y qué antigüedad tiene. Si el alcance lo permite, recuperamos una muestra sin tocar los originales.",
+    proof: "Fecha + destino + prueba acordada"
   },
   {
-    title: "Seguimiento mensual",
-    body: "Resumimos incidentes, acciones realizadas y hasta tres prioridades para el mes siguiente.",
-    proof: "Informe corto para decidir"
+    title: "Un resumen de lo que pasó en el mes",
+    body: "Te contamos qué se cayó, qué se hizo y qué conviene mirar después. Sin mandarte capturas de un tablero técnico.",
+    proof: "Informe para guardar y compartir"
   }
 ];
 
 const steps = [
-  ["Conversamos", "Entendemos qué necesita seguir funcionando y qué problema te preocupa hoy."],
-  ["Revisamos", "Hacemos un diagnóstico acotado, autorizado y sin modificar nada sin permiso."],
-  ["Priorizamos", "Recibís un informe corto con impacto, urgencia y una recomendación concreta."],
-  ["Resolvemos", "Elegís qué corregir y si necesitás acompañamiento mensual."]
+  ["Nos contás qué pasa", "No hace falta que sepas el nombre técnico. Alcanza con explicar qué se corta, qué demora o qué genera dudas."],
+  ["Lo miramos juntos", "La primera revisión es remota, con vos presente y sin cambiar configuraciones por nuestra cuenta."],
+  ["Te damos un orden", "Recibís pocos puntos, cada uno con una explicación y un próximo paso posible."],
+  ["Vos decidís", "Podés cerrar ahí, pedir un presupuesto para corregirlo o evaluar el acompañamiento mensual."]
 ];
 
 const faqs = [
@@ -232,11 +232,12 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow">ZONA NORTE Y CABA · SOPORTE REMOTO EN ARGENTINA</p>
             <h1>
-              Que un problema técnico no decida cuándo <em>frena tu negocio.</em>
+              Que una PC, el Wi-Fi o un backup dudoso no te <em>pare la oficina.</em>
             </h1>
             <p className="hero-lead">
-              Detectamos qué puede detener tu operación y te entregamos
-              prioridades concretas, sin obligarte a contratar un abono.
+              Revisamos hasta cinco equipos, encontramos lo que hoy está flojo
+              y te decimos qué resolver primero. El diagnóstico cuesta ARS
+              90.000, una sola vez.
             </p>
             <div className="hero-actions">
               <a
@@ -252,47 +253,47 @@ export default function Home() {
               </a>
             </div>
             <div className="hero-proof" aria-label="Características del servicio">
-              <span>Pago único</span>
+              <span>Hablás con quien hace la revisión</span>
+              <span>ARS 90.000 finales</span>
               <span>Sin abono obligatorio</span>
-              <span>Acceso con autorización</span>
             </div>
           </div>
 
           <div className="signal-card" aria-label="Ejemplo de diagnóstico">
             <div className="signal-top">
               <span className="live-dot" />
-              <span>REVISIÓN PREVENTIVA</span>
+              <span>EJEMPLO DE REVISIÓN</span>
               <span className="signal-time">HOY</span>
             </div>
             <div className="signal-score">
-              <span>Estado operativo</span>
-              <strong>3 prioridades</strong>
+              <span>Qué haríamos primero</span>
+              <strong>3 cosas</strong>
             </div>
             <div className="signal-list">
               <div>
                 <span className="status warning">!</span>
-                <p><strong>Backup sin verificar</strong><small>Revisión prioritaria</small></p>
+                <p><strong>Probar el backup</strong><small>Nadie recuperó un archivo todavía</small></p>
               </div>
               <div>
                 <span className="status ok">✓</span>
-                <p><strong>Conectividad estable</strong><small>Sin cambios relevantes</small></p>
+                <p><strong>Wi-Fi estable</strong><small>No hace falta tocarlo</small></p>
               </div>
               <div>
                 <span className="status info">i</span>
-                <p><strong>Accesos administrativos</strong><small>Recomendación disponible</small></p>
+                <p><strong>Separar una cuenta</strong><small>Se usa como administrador todos los días</small></p>
               </div>
             </div>
             <p className="signal-note">
-              Un informe útil prioriza decisiones. No llena páginas con
-              tecnicismos.
+              Te llevás esto: qué pasa, por qué importa y cuál sería el
+              siguiente paso.
             </p>
           </div>
         </section>
 
         <section className="problem-section section">
           <div className="section-heading">
-            <p className="eyebrow">PROBLEMAS COTIDIANOS</p>
-            <h2>No necesitás más tecnología. Necesitás que la actual funcione.</h2>
+            <p className="eyebrow">COSAS QUE PASAN EN UNA OFICINA</p>
+            <h2>Problemas chicos, hasta que frenan a todos.</h2>
           </div>
           <div className="problem-grid">
             {problems.map((problem) => (
@@ -307,11 +308,11 @@ export default function Home() {
 
         <section className="outcomes-section section" id="entregables">
           <div className="section-heading">
-            <p className="eyebrow">QUÉ RECIBÍS</p>
-            <h2>Controles que terminan en una decisión.</h2>
+            <p className="eyebrow">QUÉ TE LLEVÁS</p>
+            <h2>Algo más útil que una lista de luces verdes y rojas.</h2>
             <p>
-              No vendemos una caja ni un tablero decorativo. Cada función deja
-              una evidencia comprensible y un próximo paso.
+              Cada revisión termina en una explicación que podés guardar,
+              compartir y usar para decidir.
             </p>
           </div>
           <div className="outcome-grid">
@@ -326,9 +327,9 @@ export default function Home() {
           </div>
           <div className="sample-report">
             <div>
-              <strong>Antes de contratar, mirá el resultado.</strong>
+              <strong>Antes de pagar, mirá un informe.</strong>
               <span>
-                Informe demostrativo con datos ficticios, prioridades y próximos pasos.
+                Es ficticio, pero muestra exactamente el tipo de explicación que entregamos.
               </span>
             </div>
             <a className="button button-outline" href="/informe-ejemplo.html">
@@ -366,11 +367,11 @@ export default function Home() {
 
         <section className="services-section section" id="servicios">
           <div className="section-heading centered">
-            <p className="eyebrow">UNA ENTRADA SIMPLE</p>
-            <h2>Empezá por el problema que ya tenés.</h2>
+            <p className="eyebrow">SIN CONTRATOS DE ENTRADA</p>
+            <h2>Podés empezar por una sola revisión.</h2>
             <p>
-              Cada etapa se contrata por separado. Primero revisamos; después
-              decidís.
+              Si después querés corregir algo o tener seguimiento mensual, lo
+              vemos por separado.
             </p>
           </div>
           <div className="service-grid">
@@ -427,12 +428,11 @@ export default function Home() {
 
         <section className="automation-section section">
           <div>
-            <p className="eyebrow">AUTOMATIZACIÓN CON SENTIDO</p>
-            <h2>Menos copiar, pegar y perseguir planillas.</h2>
+            <p className="eyebrow">TAREAS QUE SE REPITEN</p>
+            <h2>Si todos los viernes alguien arma el mismo Excel, hay tiempo para recuperar.</h2>
             <p>
-              Si una tarea administrativa se repite todas las semanas,
-              evaluamos si puede simplificarse con las herramientas que tu
-              empresa ya utiliza.
+              No hace falta comprar una plataforma enorme. Primero miramos el
+              paso manual y vemos si vale la pena simplificarlo.
             </p>
           </div>
           <div className="automation-list">
@@ -444,8 +444,8 @@ export default function Home() {
 
         <section className="process-section section" id="proceso">
           <div className="section-heading">
-            <p className="eyebrow">CÓMO TRABAJAMOS</p>
-            <h2>Cuatro pasos, sin venderte humo.</h2>
+            <p className="eyebrow">CÓMO ES LA REVISIÓN</p>
+            <h2>Sin una reunión eterna ni acceso a escondidas.</h2>
           </div>
           <ol className="process-list">
             {steps.map(([title, description], index) => (
@@ -499,10 +499,10 @@ export default function Home() {
         <section className="contact-section section" id="contacto">
           <div className="contact-copy">
             <p className="eyebrow">PRIMER PASO</p>
-            <h2>Contame qué está frenando tu trabajo.</h2>
+            <h2>Contanos qué se está trabando.</h2>
             <p>
-              Completá cuatro datos. Prepararemos un mensaje para conversar por
-              WhatsApp sin que tengas que explicar todo de nuevo.
+              No hace falta que conozcas el término técnico. Completá cuatro
+              datos y WhatsApp se abre con el mensaje preparado.
             </p>
             <div className="availability">
               <span>Zona</span>
@@ -527,7 +527,7 @@ export default function Home() {
           <span>Guardián <strong>PyME</strong></span>
         </div>
         <p>
-          Soporte informático y automatización práctica para pequeñas empresas.
+          Una mano técnica para oficinas que no tienen un área de sistemas.
         </p>
         <p className="footer-note">
           El diagnóstico es limitado al alcance autorizado y no garantiza la

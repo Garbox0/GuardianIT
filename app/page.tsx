@@ -35,7 +35,7 @@ const services = [
     features: [
       "Sesión remota de hasta 2 horas",
       "Revisión de red, equipos y backups",
-      "Diagnóstico automatizado de equipos Windows",
+      "Seguridad Windows y postura del dominio",
       "5 prioridades explicadas sin tecnicismos",
       "Informe HTML y evidencia técnica"
     ],
@@ -66,7 +66,7 @@ const services = [
       "Hasta 5 computadoras",
       "3 horas de soporte remoto",
       "Control de backups y restauración acordada",
-      "Monitoreo de servicios acordados",
+      "Monitoreo web, dominio y certificado",
       "Panel privado e informe mensual"
     ],
     cta: "Evaluar mi empresa"
@@ -76,7 +76,7 @@ const services = [
 const deliverables = [
   {
     title: "Diagnóstico con evidencia",
-    body: "Revisamos almacenamiento, actualizaciones, antivirus, firewall, cifrado, administradores y backup sin modificar el equipo.",
+    body: "Revisamos Defender, firewall, actualizaciones, cifrado, UAC, accesos, RDP, SMBv1, backup y postura pública del dominio sin modificar equipos.",
     proof: "Informe HTML + evidencia JSON"
   },
   {

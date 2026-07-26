@@ -15,6 +15,7 @@ El cliente no compra una Raspberry ni un panel. Compra cinco resultados:
 | Función | Evidencia para el cliente | Beneficio |
 |---|---|---|
 | Diagnóstico Windows | Informe HTML y JSON | Identifica problemas concretos sin modificar el equipo |
+| Postura de dominio y correo | HTTPS, cabeceras, MX, SPF, DMARC y CAA | Detecta configuraciones públicas débiles sin escaneo invasivo |
 | Monitoreo | Panel privado e historial | Reduce tiempo hasta detectar una caída |
 | Control de backup | Fecha, destino y restauración documentada | Evita descubrir una copia inútil durante una emergencia |
 | Gestión de incidentes | Registro breve de causa, acción y resultado | Evita repetir diagnósticos |
@@ -23,9 +24,11 @@ El cliente no compra una Raspberry ni un panel. Compra cinco resultados:
 ## Componentes
 
 - `guardian-audit.ps1`: diagnóstico de solo lectura para Windows.
+- `guardian-domain-audit.mjs`: revisión pública de dominio, web y correo.
 - Gatus: disponibilidad e historial de servicios acordados.
 - Tailscale: acceso privado al nodo de monitoreo.
 - `guardian-report.mjs`: informe resumido desde el historial.
+- `guardian-consolidate.mjs`: consolida varios equipos y limita el resumen a cinco prioridades.
 - Plantillas en `docs/`: autorización, diagnóstico, condiciones y seguimiento.
 
 ## Lo que no prometemos

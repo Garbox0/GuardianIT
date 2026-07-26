@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$ClientName = $env:COMPUTERNAME,
     [string]$BackupPath = "",
@@ -45,12 +45,44 @@ function Get-DiskFinding {
     New-Finding "Disco $Name" "Correcto" "Informativa" "$FreeGB GB libres ($FreePercent%)" "Sin acción inmediata."
 }
 
+function Get-DefenderFinding {
+    param(
+        [bool]$AntivirusEnabled,
+        [bool]$RealTimeProtectionEnabled,
+        [int]$SignatureAge,
+        [bool]$TamperProtected,
+        [string]$FallbackProducts = ""
+    )
+
+    if (-not $AntivirusEnabled -or -not $RealTimeProtectionEnabled) {
+        $evidence = if ($FallbackProducts) {
+            "Microsoft Defender no está activo. Producto detectado: $FallbackProducts."
+        } else {
+            "No se verificó protección antivirus en tiempo real."
+        }
+        return New-Finding "Protección antimalware" "Atención" "Alta" $evidence "Confirmar que un antivirus esté activo, actualizado y protegido contra cambios."
+    }
+
+    if ($SignatureAge -gt 3 -or -not $TamperProtected) {
+        $tamper = if ($TamperProtected) { "activa" } else { "desactivada" }
+        return New-Finding "Protección antimalware" "Atención" "Media" "Defender activo; firmas de hace $SignatureAge días; protección contra alteraciones $tamper." "Actualizar firmas y activar protección contra alteraciones si la edición lo permite."
+    }
+
+    New-Finding "Protección antimalware" "Correcto" "Informativa" "Defender en tiempo real; firmas de hace $SignatureAge días; protección contra alteraciones activa." "Sin acción inmediata."
+}
+
 if ($SelfTest) {
     if ((Get-DiskFinding "C:" 5 100).Severity -ne "Alta") {
         throw "Falló el control de disco crítico"
     }
     if ((Get-DiskFinding "C:" 50 100).Status -ne "Correcto") {
         throw "Falló el control de disco saludable"
+    }
+    if ((Get-DefenderFinding $true $true 5 $true).Severity -ne "Media") {
+        throw "Falló el control de firmas antiguas"
+    }
+    if ((Get-DefenderFinding $true $true 0 $true).Status -ne "Correcto") {
+        throw "Falló el control de Defender saludable"
     }
     Write-Output "Guardian audit self-test: OK"
     return
@@ -68,6 +100,7 @@ foreach ($disk in Get-CimInstance Win32_LogicalDisk -Filter "DriveType=3") {
     $findings.Add((Get-DiskFinding $disk.DeviceID $freePercent $freeGB))
 }
 
+$antivirus = @()
 try {
     $antivirus = @(Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntivirusProduct)
     if ($antivirus.Count) {
@@ -78,6 +111,24 @@ try {
     }
 } catch {
     $findings.Add((New-Finding "Antivirus" "No verificable" "Media" $_.Exception.Message "Revisar manualmente."))
+}
+
+try {
+    $defender = Get-MpComputerStatus
+    $signatureAge = if ($null -ne $defender.AntivirusSignatureAge) {
+        [int]$defender.AntivirusSignatureAge
+    } else {
+        999
+    }
+    $fallbackProducts = ($antivirus | Select-Object -ExpandProperty displayName -Unique) -join ", "
+    $findings.Add((Get-DefenderFinding `
+        ([bool]$defender.AntivirusEnabled) `
+        ([bool]$defender.RealTimeProtectionEnabled) `
+        $signatureAge `
+        ([bool]$defender.IsTamperProtected) `
+        $fallbackProducts))
+} catch {
+    $findings.Add((New-Finding "Protección antimalware" "No verificable" "Media" $_.Exception.Message "Confirmar protección en tiempo real, firmas y protección contra alteraciones."))
 }
 
 try {
@@ -123,6 +174,74 @@ try {
     $findings.Add((New-Finding "Administradores locales" "No verificable" "Media" $_.Exception.Message "Revisar manualmente."))
 }
 
+try {
+    $uacEnabled = (Get-ItemProperty -LiteralPath "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name EnableLUA).EnableLUA -eq 1
+    if ($uacEnabled) {
+        $findings.Add((New-Finding "Control de cuentas (UAC)" "Correcto" "Informativa" "UAC está habilitado." "Sin acción inmediata."))
+    } else {
+        $findings.Add((New-Finding "Control de cuentas (UAC)" "Desactivado" "Alta" "EnableLUA está deshabilitado." "Habilitar UAC después de validar aplicaciones y acordar el reinicio."))
+    }
+} catch {
+    $findings.Add((New-Finding "Control de cuentas (UAC)" "No verificable" "Informativa" $_.Exception.Message "Revisar manualmente."))
+}
+
+try {
+    $smb1 = Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol
+    if ($smb1.State -eq "Enabled") {
+        $findings.Add((New-Finding "Protocolo SMBv1" "Habilitado" "Alta" "La característica SMB1Protocol está habilitada." "Deshabilitar SMBv1 después de confirmar que ningún equipo antiguo depende de él."))
+    } else {
+        $findings.Add((New-Finding "Protocolo SMBv1" "Correcto" "Informativa" "SMBv1 no está habilitado." "Sin acción inmediata."))
+    }
+} catch {
+    $findings.Add((New-Finding "Protocolo SMBv1" "No verificable" "Informativa" $_.Exception.Message "Verificar con privilegios administrativos."))
+}
+
+try {
+    $secureBoot = Confirm-SecureBootUEFI
+    if ($secureBoot) {
+        $findings.Add((New-Finding "Arranque seguro" "Correcto" "Informativa" "Secure Boot está activo." "Sin acción inmediata."))
+    } else {
+        $findings.Add((New-Finding "Arranque seguro" "Desactivado" "Media" "El firmware informa Secure Boot desactivado." "Evaluar activarlo después de confirmar compatibilidad y claves de recuperación."))
+    }
+} catch {
+    $findings.Add((New-Finding "Arranque seguro" "No verificable" "Informativa" $_.Exception.Message "Revisar firmware y compatibilidad del equipo."))
+}
+
+try {
+    $guest = Get-LocalUser | Where-Object { $_.SID.Value.EndsWith("-501") } | Select-Object -First 1
+    if ($guest -and $guest.Enabled) {
+        $findings.Add((New-Finding "Cuenta invitado" "Habilitada" "Alta" "La cuenta local de invitado está habilitada." "Deshabilitarla salvo necesidad documentada."))
+    } else {
+        $findings.Add((New-Finding "Cuenta invitado" "Correcto" "Informativa" "La cuenta local de invitado no está habilitada." "Sin acción inmediata."))
+    }
+} catch {
+    $findings.Add((New-Finding "Cuenta invitado" "No verificable" "Informativa" $_.Exception.Message "Revisar manualmente."))
+}
+
+try {
+    $rdpEnabled = (Get-ItemProperty -LiteralPath "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server" -Name fDenyTSConnections).fDenyTSConnections -eq 0
+    if ($rdpEnabled) {
+        $findings.Add((New-Finding "Escritorio remoto" "Habilitado" "Media" "Windows acepta conexiones de Escritorio remoto." "Confirmar necesidad, restringir por VPN y mantener autenticación a nivel de red."))
+    } else {
+        $findings.Add((New-Finding "Escritorio remoto" "Correcto" "Informativa" "Escritorio remoto no acepta conexiones." "Sin acción inmediata."))
+    }
+} catch {
+    $findings.Add((New-Finding "Escritorio remoto" "No verificable" "Informativa" $_.Exception.Message "Revisar manualmente."))
+}
+
+try {
+    $pendingReboot =
+        (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Component Based Servicing\RebootPending") -or
+        (Test-Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired")
+    if ($pendingReboot) {
+        $findings.Add((New-Finding "Reinicio pendiente" "Atención" "Media" "Windows informa un reinicio pendiente." "Acordar una ventana, reiniciar y comprobar servicios críticos."))
+    } else {
+        $findings.Add((New-Finding "Reinicio pendiente" "Correcto" "Informativa" "No se detectó un reinicio pendiente." "Sin acción inmediata."))
+    }
+} catch {
+    $findings.Add((New-Finding "Reinicio pendiente" "No verificable" "Informativa" $_.Exception.Message "Revisar manualmente."))
+}
+
 if ($BackupPath) {
     try {
         $latestBackup = Get-ChildItem -LiteralPath $BackupPath -File -Recurse |
@@ -141,7 +260,7 @@ if ($BackupPath) {
 }
 
 $report = [ordered]@{
-    Version = "1.0"
+    Version = "1.1"
     Client = $ClientName
     GeneratedAt = (Get-Date).ToString("o")
     Computer = [ordered]@{

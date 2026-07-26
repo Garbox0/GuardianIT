@@ -12,6 +12,7 @@
     "test": "node --experimental-strip-types --test tests/*.test.*",
     "report": "node scripts/guardian-report.mjs",
     "consolidate": "node scripts/guardian-consolidate.mjs",
+    "audit:domain": "node scripts/guardian-domain-audit.mjs",
     "check": "npm run clean && npm test && tsc --noEmit && vinext check && npm run build"
   },
   "dependencies": {

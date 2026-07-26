@@ -46,3 +46,13 @@ endpoints:
       - "[STATUS] == 200"
       - "[RESPONSE_TIME] < 5000"
       - "[CERTIFICATE_EXPIRATION] > 168h"
+      - "[BODY] == pat(*Guardián PyME*)"
+
+  - name: "Dominio y certificado"
+    group: "Guardián PyME"
+    url: "https://aerosftp.com"
+    interval: 6h
+    conditions:
+      - "[STATUS] == 200"
+      - "[CERTIFICATE_EXPIRATION] > 336h"
+      - "[DOMAIN_EXPIRATION] > 720h"

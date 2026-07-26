@@ -1,6 +1,6 @@
 # Estado instalado
 
-Última verificación: 2026-07-25.
+Última verificación: 2026-07-26.
 
 - Nodo: `judicia-scraper` (`100.80.237.96` en Tailscale).
 - Panel: `http://100.80.237.96:8080`.
@@ -8,7 +8,10 @@
 - Imagen ARM64:
   `ghcr.io/twin/gatus@sha256:c5f210d095fa78e6efaa20ffeb14803f2ba4f10615e16a6d12087697149617f0`.
 - Persistencia: volumen Docker `guardian-pyme_gatus-data`.
-- Chequeos activos: conectividad HTTPS, motor local y sitio comercial público.
+- Chequeos activos: conectividad HTTPS, motor local, contenido del sitio
+  comercial, vencimiento del dominio y certificado.
+- Alertas: todavía sin proveedor; el panel conserva historial pero no debe
+  venderse como aviso proactivo hasta configurar un canal externo.
 - Exposición: solamente `100.80.237.96:8080`; no escucha en la IP LAN.
 
 ## Sitio comercial

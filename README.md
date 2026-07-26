@@ -57,6 +57,8 @@ Las decisiones de infraestructura y sus umbrales están en
 [`docs/16-arquitectura-y-escalado.md`](docs/16-arquitectura-y-escalado.md).
 La operación posterior al pago y el informe automático están en
 [`docs/17-operacion-semiautomatica.md`](docs/17-operacion-semiautomatica.md).
+El catálogo real de monitoreo y seguridad está en
+[`docs/18-monitoreo-y-ciberseguridad.md`](docs/18-monitoreo-y-ciberseguridad.md).
 
 ## Antes de publicar
 

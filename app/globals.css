@@ -472,6 +472,50 @@ h2 {
   font-size: 13px;
 }
 
+.sample-report {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 18px;
+  padding: 24px 28px;
+  border: 1px solid var(--green);
+  border-radius: 14px;
+  background: var(--green-dark);
+  color: white;
+}
+
+.sample-report div {
+  display: grid;
+  gap: 4px;
+}
+
+.sample-report strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.sample-report span {
+  color: #c7d3ce;
+  font-size: 14px;
+}
+
+.sample-report .button-outline {
+  flex: 0 0 auto;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: white;
+  background: transparent;
+}
+
+.sample-report .button-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sample-report .button-outline span {
+  color: inherit;
+}
+
 .services-section {
   background: #e9eee8;
 }
@@ -985,6 +1029,15 @@ footer p {
   .outcome-grid,
   .fit-section {
     grid-template-columns: 1fr;
+  }
+
+  .sample-report {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sample-report .button {
+    justify-content: center;
   }
 
   .problem-card {

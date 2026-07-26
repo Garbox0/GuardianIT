@@ -53,6 +53,8 @@ El flujo de autoservicio está en
 [`docs/10-cobro-y-agenda.md`](docs/10-cobro-y-agenda.md).
 La medición y los seguimientos están en
 [`docs/15-automatizacion-de-ventas.md`](docs/15-automatizacion-de-ventas.md).
+Las decisiones de infraestructura y sus umbrales están en
+[`docs/16-arquitectura-y-escalado.md`](docs/16-arquitectura-y-escalado.md).
 
 ## Antes de publicar
 

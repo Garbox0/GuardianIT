@@ -313,6 +313,17 @@ export default function Home() {
               </article>
             ))}
           </div>
+          <div className="sample-report">
+            <div>
+              <strong>Antes de contratar, mirá el resultado.</strong>
+              <span>
+                Informe demostrativo con datos ficticios, prioridades y próximos pasos.
+              </span>
+            </div>
+            <a className="button button-outline" href="/informe-ejemplo.html">
+              Ver informe de ejemplo <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </section>
 
         <section className="services-section section" id="servicios">
@@ -342,8 +353,9 @@ export default function Home() {
                 </ul>
                 {index === 0 && (
                   <p className="service-note">
-                    Pago único, sin suscripción. Después de pagar, volvé a esta
-                    pestaña y reservá tu turno.
+                    Pago único, sin suscripción. Después de pagar, enviá el
+                    número de operación. Verificamos la acreditación y te
+                    habilitamos la agenda.
                   </p>
                 )}
                 <a
@@ -356,14 +368,14 @@ export default function Home() {
                   {index === 0 ? site.purchaseLabel : service.cta}
                   {index !== 0 && <span aria-hidden="true"> →</span>}
                 </a>
-                {index === 0 && site.bookingLink && (
+                {index === 0 && site.paymentLink && (
                   <a
                     className="booking-link"
-                    href={site.bookingLink}
+                    href={site.paymentConfirmationUrl}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    ¿Ya pagaste? Reservá tu turno
+                    ¿Ya pagaste? Validar pago por WhatsApp
                   </a>
                 )}
               </article>

@@ -5,12 +5,13 @@ const whatsappNumber =
   "5491121632824";
 const paymentLink =
   process.env.NEXT_PUBLIC_PAYMENT_LINK?.trim() || "https://mpago.la/2MLSJyJ";
-const bookingLink =
-  process.env.NEXT_PUBLIC_BOOKING_LINK?.trim() ||
-  "https://calendar.app.google/uTrUozvBsjPKUQfY9";
 const whatsappUrl = buildWhatsAppUrl(
   whatsappNumber,
   "Hola, vi Guardián PyME y quiero consultar por el Diagnóstico Guardián."
+);
+const paymentConfirmationUrl = buildWhatsAppUrl(
+  whatsappNumber,
+  "Hola, ya pagué el Diagnóstico Guardián. Mi nombre es ___ y el número de operación de Mercado Pago es ___."
 );
 
 export const site = {
@@ -27,8 +28,8 @@ export const site = {
   whatsappNumber,
   whatsappDisplay: "+54 9 11 2163-2824",
   whatsappUrl,
+  paymentConfirmationUrl,
   paymentLink,
-  bookingLink,
   purchaseUrl: paymentLink || whatsappUrl,
   purchaseLabel: paymentLink ? "Comprar diagnóstico" : "Consultar por WhatsApp"
 };

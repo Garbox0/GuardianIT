@@ -3,16 +3,16 @@
 ## Embudo activo
 
 ```text
-Sitio → Mercado Pago → Agenda → Confirmación → Diagnóstico
+Sitio → Mercado Pago → Validación → Agenda privada → Diagnóstico
 ```
 
-El cliente puede pagar y reservar sin conversación previa. La única validación
-manual obligatoria es comprobar que el pago figure acreditado antes de
-trabajar.
+El cliente puede pagar sin conversación previa. Hasta implementar un webhook,
+la validación manual obligatoria es comprobar que el pago figure acreditado y
+recién entonces entregar la agenda.
 
 ## Configurar ahora en Google Calendar
 
-Editar la agenda `GuardianIT`:
+Desactivar la agenda cuya URL estuvo publicada y crear una nueva:
 
 - duración: 2 horas;
 - anticipación mínima: 48 horas;
@@ -23,6 +23,9 @@ Editar la agenda `GuardianIT`:
   principal;
 - activar verificación de correo si la cuenta lo permite;
 - enviar recordatorios 24 horas y 2 horas antes si el plan lo permite.
+
+No colocar la nueva URL en variables `NEXT_PUBLIC_*`: todo dato con ese prefijo
+se entrega al navegador y deja de ser privado.
 
 Descripción sugerida:
 
@@ -59,6 +62,7 @@ que el volumen vuelva incómodo este control.
 
 ## Cuándo integrar Mercado Pago
 
-Agregar webhook, base de datos y correos transaccionales recién cuando haya
-varias compras mensuales y la validación manual del pago provoque errores o
-demoras. Antes de ese punto, el tablero de Mercado Pago es la fuente de verdad.
+Agregar webhook, un registro mínimo de operaciones y mensajes transaccionales
+cuando la validación manual provoque errores o demoras. Antes de ese punto, el
+tablero de Mercado Pago es la fuente de verdad y la agenda se comparte sólo
+después de validar.

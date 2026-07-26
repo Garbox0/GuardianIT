@@ -60,7 +60,7 @@ identificador `CLI-AAAA-NNN`. Generar el informe desde un equipo conectado a
 Tailscale:
 
 ```powershell
-npm run report -- http://100.80.237.96:8080 `
+npm run report -- https://guardian-monitor.tailfe3e24.ts.net `
   "Nombre del cliente" `
   "CLI-2026-001" `
   --html > informe-2026-07.html
@@ -81,7 +81,7 @@ documentada.
 Para generar de una sola vez el informe completo y el mensaje exacto:
 
 ```powershell
-npm run report -- http://100.80.237.96:8080 `
+npm run report -- https://guardian-monitor.tailfe3e24.ts.net `
   "Nombre del cliente" `
   "CLI-2026-001" `
   --export "D:\Clientes\CLI-2026-001\06-entregables\monitoreo"

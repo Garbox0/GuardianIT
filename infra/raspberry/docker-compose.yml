@@ -4,7 +4,7 @@ services:
     container_name: guardian-gatus
     restart: unless-stopped
     ports:
-      - "100.80.237.96:8080:8080"
+      - "127.0.0.1:8080:8080"
     volumes:
       - ./config:/config:ro
       - gatus-data:/data

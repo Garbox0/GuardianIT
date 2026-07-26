@@ -18,10 +18,10 @@ alerting:
       send-on-resolved: true
 
 ui:
-  title: "Guardián PyME | Estado"
+  title: "Guardián PyME | Monitoreo"
   header: "Guardián PyME"
-  dashboard-heading: "Nodo de demostración"
-  dashboard-subheading: "Continuidad y disponibilidad, sin exposición a Internet"
+  dashboard-heading: "Centro de monitoreo"
+  dashboard-subheading: "Clientes y servicios separados por grupo"
   default-sort-by: group
 
 web:

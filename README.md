@@ -44,7 +44,7 @@ powershell -ExecutionPolicy Bypass -File .\tools\windows\guardian-audit.ps1 `
 ```
 
 ```bash
-npm run report -- http://100.80.237.96:8080 "Nombre del cliente"
+npm run report -- https://guardian-monitor.tailfe3e24.ts.net "Nombre del cliente"
 ```
 
 El producto y sus límites están explicados en
@@ -68,8 +68,10 @@ El catálogo real de monitoreo y seguridad está en
 - Reemplazar precios orientativos si cambia el alcance.
 - Probar el enlace de WhatsApp desde un teléfono.
 
-## Nodo de demostración
+## Centro de monitoreo interno
 
-La Raspberry ejecuta un panel de monitoreo privado para demostraciones. La
-configuración reproducible y el procedimiento operativo están en
+La Raspberry ejecuta el panel maestro privado de disponibilidad. Cada empresa
+se identifica con un grupo exclusivo y recibe únicamente su informe o portal
+filtrado; el panel compartido no se entrega a clientes. La configuración
+reproducible y el procedimiento operativo están en
 [`infra/raspberry`](infra/raspberry/README.md).

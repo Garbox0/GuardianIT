@@ -24,20 +24,22 @@ El arranque se coordina con `tailscale-online.target` mediante
 `guardian-pyme.service`. Así Docker no intenta publicar el puerto antes de que
 exista la IP de Tailscale.
 
-El panel queda disponible para equipos autorizados en el tailnet:
+El panel queda disponible por HTTPS únicamente para equipos autorizados en el
+tailnet:
 
 ```text
-http://100.80.237.96:8080
+https://guardian-monitor.tailfe3e24.ts.net/
 ```
 
-El tráfico viaja dentro del túnel cifrado de Tailscale. No se abre ningún puerto
-en el router ni se usa Tailscale Funnel. La función Tailscale Serve no estaba
-habilitada en el tailnet durante la instalación.
+Tailscale Serve termina TLS y reenvía a Gatus en `127.0.0.1:8080`. El puerto
+directo no escucha en la IP de Tailscale. No se abre ningún puerto en el router
+ni se usa Tailscale Funnel.
 
 ## Verificaciones
 
 ```bash
-curl -fsS http://100.80.237.96:8080/api/v1/endpoints/statuses
+curl -fsS http://127.0.0.1:8080/api/v1/endpoints/statuses
+curl -fsS https://guardian-monitor.tailfe3e24.ts.net/
 docker inspect guardian-gatus --format '{{.State.Status}}'
 docker stats --no-stream guardian-gatus
 findmnt /mnt/hdd
@@ -46,6 +48,13 @@ systemctl status smartmontools
 ```
 
 ## Agregar un cliente
+
+Este es el panel maestro interno. Cada cliente usa un identificador de grupo
+propio, por ejemplo `CLI-2026-001`; Gatus muestra cada grupo en una sección y
+los informes filtran los endpoints por ese mismo identificador.
+
+El panel maestro no se comparte con clientes porque Gatus no ofrece aislamiento
+fuerte entre empresas. Cada cliente recibe sólo su informe o portal filtrado.
 
 Editar `config/config.yaml` y sumar un endpoint. Ejemplo:
 

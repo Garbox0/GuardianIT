@@ -11,7 +11,8 @@ honesta. Una alerta no implica automáticamente un incidente de seguridad.
   certificado, dominio y conectividad saliente.
 - **UptimeRobot:** debe observar el sitio desde Internet y recibir el heartbeat
   de la Raspberry. Es el canal que avisa si el nodo pierde energía o conexión.
-- **Panel privado:** conserva el historial en `http://100.80.237.96:8080`.
+- **Panel privado:** conserva el historial en
+  `https://guardian-monitor.tailfe3e24.ts.net`.
 
 El tópico de ntfy y la URL del heartbeat son secretos operativos. Se guardan en
 `/home/pi/guardian-pyme/.env`, con permisos `600`, y no se envían a clientes.
@@ -35,7 +36,7 @@ docker compose ps
 docker compose logs --tail=100 gatus
 systemctl status guardian-pyme guardian-site cloudflared
 systemctl status guardian-heartbeat.timer
-curl -fsS http://100.80.237.96:8080/api/v1/endpoints/statuses
+curl -fsS https://guardian-monitor.tailfe3e24.ts.net/api/v1/endpoints/statuses
 ```
 
 ## Comunicación con el cliente

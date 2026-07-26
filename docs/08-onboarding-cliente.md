@@ -42,7 +42,7 @@ Una fecha reciente no demuestra que el contenido sea recuperable.
 Desde un equipo conectado a Tailscale:
 
 ```bash
-npm run report -- http://100.80.237.96:8080 "Nombre del cliente" "CLI-2026-001" --html > informe.html
+npm run report -- https://guardian-monitor.tailfe3e24.ts.net "Nombre del cliente" "CLI-2026-001" --html > informe.html
 ```
 
 Completar el informe con incidentes atendidos, acciones realizadas y tres

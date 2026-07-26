@@ -2,8 +2,9 @@
 
 Última verificación: 2026-07-26.
 
-- Nodo: `judicia-scraper` (`100.80.237.96` en Tailscale).
-- Panel: `http://100.80.237.96:8080`.
+- Nodo: `judicia-scraper`; nombre Tailscale `guardian-monitor`
+  (`100.80.237.96`).
+- Panel: `https://guardian-monitor.tailfe3e24.ts.net`.
 - Contenedor: `guardian-gatus`.
 - Imagen ARM64:
   `ghcr.io/twin/gatus@sha256:c5f210d095fa78e6efaa20ffeb14803f2ba4f10615e16a6d12087697149617f0`.
@@ -13,7 +14,9 @@
 - Alertas internas: ntfy para falla y recuperación, con tópico secreto fuera
   del repositorio. Envío probado con una falla controlada el 2026-07-26.
 - Pendiente: monitor externo independiente de la Raspberry.
-- Exposición: solamente `100.80.237.96:8080`; no escucha en la IP LAN.
+- Exposición: Tailscale Serve por HTTPS y sólo para el tailnet. Gatus escucha
+  en `127.0.0.1:8080`; el puerto directo no está disponible en la IP LAN ni en
+  la IP de Tailscale. Funnel no está habilitado.
 
 ## Sitio comercial
 
@@ -57,6 +60,8 @@ Revisado nuevamente después de reconectarlo por USB 3:
 - NTFS: `$MFT` y `$MFTMirr` no coinciden.
 - Lectura de prueba: correcta y sin errores nuevos del kernel.
 
-El disco quedó desmontado y su entrada en `/etc/fstab` se dejó como
-`ro,noauto,nofail`. No debe utilizarse como respaldo primario hasta reparar
-NTFS desde Windows y completar un autotest SMART extendido.
+El disco está montado en `/mnt/hdd` como NTFS de sólo lectura. Su entrada en
+`/etc/fstab` usa `ro,nofail,x-systemd.automount,x-systemd.device-timeout=10s`;
+su ausencia no impide el arranque. `smartd` está activo con modo SAT. No debe
+utilizarse como respaldo primario hasta reparar NTFS desde Windows y completar
+un autotest SMART extendido.
